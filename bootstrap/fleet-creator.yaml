@@ -1,0 +1,43 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-creator
+spec:
+  name: fleet-creator
+  documentation: |
+    Sets up a PR to provision the global services for a new fleet definition.
+  creates:
+    templates:
+    - source: template/fleet.yaml
+      destination: "bootstrap/fleet{{ context.fleetName }}.yaml"
+      external: false
+    - source: template/clusters.yaml
+      destination: fleets/{{ context.fleetName }}/clusters.yaml
+      external: false
+    - source: template/trivial/dev.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/dev.yaml
+      external: false
+    - source: template/trivial/prod.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/prod.yaml
+      external: false
+    - source: template/trivial/prautomation.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/prautomation.yaml
+      external: false
+    - source: template/trivial/pipeline.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/pipeline.yaml
+      external: false
+  scmConnectionRef:
+    name: gh-test
+  title: "Adding fleet {{ context.fleetName }}"
+  message: "Adding fleet {{ context.fleetName }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: fleetName
+    type: STRING
+    documentation: The name of this fleet
+  - name: devCluster
+    type: STRING
+    documentation: The name of an initial dev cluster
+  - name: prodCluster
+    type: STRING
+    documentation: The name of an initial prod cluster
