@@ -1,0 +1,10 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: trivial
+spec:
+  pipelineRef:
+    name: {{ context.fleetName }}-trivial
+    namespace: {{ context.fleetName }}
+  context:
+    version: 1.24
