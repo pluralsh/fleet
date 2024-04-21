@@ -1,0 +1,6 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GitRepository
+metadata:
+  name: fleets
+spec:
+  url: https://github.com/pluralsh/fleet.git
