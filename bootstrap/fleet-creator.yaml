@@ -14,7 +14,7 @@ spec:
     - source: template/clusters.yaml
       destination: fleets/{{ context.fleetName }}/clusters.yaml
       external: false
-    - source: template/trivial/context
+    - source: template/trivial/context.yaml
       destination: fleets/{{ context.fleetName }}/trivial/context.yaml
       external: false
     - source: template/trivial/dev.yaml
