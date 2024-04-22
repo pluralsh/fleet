@@ -17,6 +17,18 @@ spec:
     - source: template/trivial
       destination: fleets/{{ context.fleetName }}/trivial
       external: false
+    - source: template/trivial/dev.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/dev.yaml
+      external: false
+    - source: template/trivial/prod.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/prod.yaml
+      external: false
+    - source: template/trivial/prautomation.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/prautomation.yaml
+      external: false
+    - source: template/trivial/pipeline.yaml
+      destination: fleets/{{ context.fleetName }}/trivial/pipeline.yaml
+      external: false
   scmConnectionRef:
     name: gh-test
   title: "Adding fleet {{ context.fleetName }}"
