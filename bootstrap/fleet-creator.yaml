@@ -14,20 +14,8 @@ spec:
     - source: template/clusters.yaml
       destination: fleets/{{ context.fleetName }}/clusters.yaml
       external: false
-    - source: template/trivial/context.yaml
-      destination: fleets/{{ context.fleetName }}/trivial/context.yaml
-      external: false
-    - source: template/trivial/dev.yaml
-      destination: fleets/{{ context.fleetName }}/trivial/dev.yaml
-      external: false
-    - source: template/trivial/prod.yaml
-      destination: fleets/{{ context.fleetName }}/trivial/prod.yaml
-      external: false
-    - source: template/trivial/prautomation.yaml
-      destination: fleets/{{ context.fleetName }}/trivial/prautomation.yaml
-      external: false
-    - source: template/trivial/pipeline.yaml
-      destination: fleets/{{ context.fleetName }}/trivial/pipeline.yaml
+    - source: template/trivial
+      destination: fleets/{{ context.fleetName }}/trivial
       external: false
   scmConnectionRef:
     name: gh-test
