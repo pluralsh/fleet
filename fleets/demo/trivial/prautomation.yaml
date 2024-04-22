@@ -1,0 +1,21 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: demo-trivial
+spec:
+  name: demo-trivial
+  documentation: Updates the trivial service for the demo fleet to a specified nginx tag for each stage
+  updates:
+    regexReplacements:
+    - regex: "tag: (.*) # VERSION"
+      file: fleets/demo/{{ context.pipeline.stage.name }}.yaml
+      replacement: "tag: {{ context.version }} # VERSION"
+  scmConnectionRef:
+    name: gh-test
+  title: Updating pod info prod helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
+  message: Updating pod info prod helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
+  identifier: pluralsh/fleet
+  configuration:
+  - name: version
+    type: STRING
+    documentation: The helm chart version to use
