@@ -1,0 +1,33 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: trivial-prod
+spec:
+  namespace: trivial
+  git:
+    folder: components/trivial
+    ref: main
+  helm:
+    values:
+      image:
+        tag: 1.24 # VERSION
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: boot-prod
+    namespace: test
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: trivial-prod-test
+spec:
+  serviceRef:
+    name: trivial-prod
+    namespace: test
+  tags:
+    tier: prod
+    fleet: test

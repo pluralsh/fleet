@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: boot-staging
+spec:
+  handle: boot-staging
+  tags:
+    tier: dev
+    fleet: test
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: boot-prod
+spec:
+  handle: boot-prod
+  tags:
+    tier: prod
+    fleet: test
