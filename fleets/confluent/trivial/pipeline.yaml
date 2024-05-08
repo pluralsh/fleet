@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: confluent-trivial
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: trivial-dev
+            namespace: confluent
+          criteria:
+            prAutomationRef:
+              name: confluent-trivial
+    - name: prod
+      services:
+        - serviceRef:
+            name: trivial-prod
+            namespace: confluent
+          criteria:
+            prAutomationRef:
+              name: confluent-trivial
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL

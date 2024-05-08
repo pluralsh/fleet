@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: confluent-dev
+spec:
+  handle: confluent-dev
+  tags:
+    tier: dev
+    fleet: confluent
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: confluent-prod
+spec:
+  handle: confluent-prod
+  tags:
+    tier: prod
+    fleet: confluent

@@ -1,0 +1,10 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: trivial
+spec:
+  pipelineRef:
+    name: confluent-trivial
+    namespace: confluent
+  context:
+    version: 1.24
