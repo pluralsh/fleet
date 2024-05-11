@@ -14,8 +14,14 @@ spec:
     - source: template/clusters.yaml
       destination: fleets/{{ context.fleetName }}/clusters.yaml
       external: false
-    - source: template/trivial
-      destination: fleets/{{ context.fleetName }}/trivial
+    - source: template/argo-rollouts
+      destination: fleets/{{ context.fleetName }}/argo-rollouts
+      external: false
+    - source: template/kube-state-metrics
+      destination: fleets/{{ context.fleetName }}/kube-state-metrics
+      external: false
+    - source: template/vpa
+      destination: fleets/{{ context.fleetName }}/vpa
       external: false
   scmConnectionRef:
     name: gh-test

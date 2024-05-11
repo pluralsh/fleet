@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: {{ context.fleetName }}-argo-rollouts
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: argo-rollouts-dev
+            namespace: {{ context.fleetName }}
+          criteria:
+            prAutomationRef:
+              name: {{ context.fleetName }}-argo-rollouts
+    - name: prod
+      services:
+        - serviceRef:
+            name: argo-rollouts-prod
+            namespace: {{ context.fleetName }}
+          criteria:
+            prAutomationRef:
+              name: {{ context.fleetName }}-argo-rollouts
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
