@@ -7,4 +7,5 @@ spec:
     name: {{ context.fleetName }}-argo-rollouts
     namespace: {{ context.fleetName }}
   context:
+    component: argo-rollouts
     version: 2.35.2

@@ -1,0 +1,24 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: {{ context.fleetName }}-pra
+spec:
+  name: {{ context.fleetName }}-pra
+  documentation: Updates the a given component service for the {{ context.fleetName }} fleet to a new chart version for any stage
+  updates:
+    regexReplacements:
+    - regex: "version: (.*) # VERSION"
+      file: fleets/{{ context.fleetName }}/{% raw %}{{context.component }}/{{ context.pipeline.stage.name }}{% endraw %}.yaml
+      replacement: "version: {% raw %}{{ context.version }}{% endraw %} # VERSION"
+  scmConnectionRef:
+    name: gh-test
+  title: Updating {% raw %}{{ context.component }} {{ context.pipeline.stage.name }}{% endraw %} helm version to {% raw %}{{ context.version }}{% endraw %} (stage={% raw %}{{ context.pipeline.stage.name }}{% endraw %})
+  message: Updating {% raw %}{{ context.component }} {{ context.pipeline.stage.name }}{% endraw %} helm version to {% raw %}{{ context.version }}{% endraw %} (stage={% raw %}{{ context.pipeline.stage.name }}{% endraw %})
+  identifier: pluralsh/fleet
+  configuration:
+  - name: component
+    type: STRING
+    documentation: The component to update
+  - name: version
+    type: STRING
+    documentation: The helm chart version to use

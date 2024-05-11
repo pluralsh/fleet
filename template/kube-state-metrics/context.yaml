@@ -7,4 +7,5 @@ spec:
     name: {{ context.fleetName }}-kube-state-metrics
     namespace: {{ context.fleetName }}
   context:
+    component: kube-state-metrics
     version: 5.19.0

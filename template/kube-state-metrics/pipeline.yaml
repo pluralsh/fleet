@@ -11,7 +11,7 @@ spec:
             namespace: {{ context.fleetName }}
           criteria:
             prAutomationRef:
-              name: {{ context.fleetName }}-kube-state-metrics
+              name: {{ context.fleetName }}-pra
     - name: prod
       services:
         - serviceRef:
@@ -19,7 +19,7 @@ spec:
             namespace: {{ context.fleetName }}
           criteria:
             prAutomationRef:
-              name: {{ context.fleetName }}-kube-state-metrics
+              name: {{ context.fleetName }}-pra
   edges:
     - from: dev
       to: prod
