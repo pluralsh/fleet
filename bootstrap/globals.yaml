@@ -6,8 +6,10 @@ spec:
   cascade:
     delete: true
   template:
-    chart: logging-operator
-    version: 4.3.0
-    repository:
-      name: logging
-      namespace: infra
+    namespace: logging-operator
+    helm:
+      chart: logging-operator
+      version: 4.3.0
+      repository:
+        name: logging
+        namespace: infra
