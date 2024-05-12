@@ -1,0 +1,24 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: mlx-pra
+spec:
+  name: mlx-pra
+  documentation: Updates the a given component service for the mlx fleet to a new chart version for any stage
+  updates:
+    regexReplacements:
+    - regex: "version: (.*) # VERSION"
+      file: fleets/mlx/{{context.component }}/{{ context.pipeline.stage.name }}.yaml
+      replacement: "version: {{ context.version }} # VERSION"
+  scmConnectionRef:
+    name: gh-test
+  title: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
+  message: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
+  identifier: pluralsh/fleet
+  configuration:
+  - name: component
+    type: STRING
+    documentation: The component to update
+  - name: version
+    type: STRING
+    documentation: The helm chart version to use
