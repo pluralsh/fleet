@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: argo-rollouts
+spec:
+  pipelineRef:
+    name: mlx-argo-rollouts
+    namespace: mlx
+  context:
+    component: argo-rollouts
+    version: 2.35.2
