@@ -1,16 +1,16 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: GlobalService
-metadata:
-  name: logging-operator
-spec:
-  cascade:
-    delete: true
-  template:
-    name: logging-operator
-    namespace: logging-operator
-    helm:
-      chart: logging-operator
-      version: 4.3.0
-      repository:
-        name: logging
-        namespace: infra
+# apiVersion: deployments.plural.sh/v1alpha1
+# kind: GlobalService
+# metadata:
+#   name: logging-operator
+# spec:
+#   cascade:
+#     delete: true
+#   template:
+#     name: logging-operator
+#     namespace: logging-operator
+#     helm:
+#       chart: logging-operator
+#       version: 4.3.0
+#       repository:
+#         name: logging
+#         namespace: infra
