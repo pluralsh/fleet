@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: runthrough-argo-rollouts
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: argo-rollouts-dev
+            namespace: runthrough
+          criteria:
+            prAutomationRef:
+              name: runthrough-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: argo-rollouts-prod
+            namespace: runthrough
+          criteria:
+            prAutomationRef:
+              name: runthrough-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
