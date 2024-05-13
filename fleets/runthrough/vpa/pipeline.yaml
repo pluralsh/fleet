@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: runthrough-vpa
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: runthrough
+          criteria:
+            prAutomationRef:
+              name: runthrough-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: runthrough
+          criteria:
+            prAutomationRef:
+              name: runthrough-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
