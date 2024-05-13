@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: argo-rollouts
+spec:
+  name: argo-rollouts
+  documentation: |
+    Sets up a PR to provision argo-rollouts for your fleet
+  creates:
+    templates:
+    - source: template/argo-rollouts
+      destination: fleets/{{ context.fleetName }}/argo-rollouts
+      external: false
+  scmConnectionRef:
+    name: gh-test
+  title: "Adding argo rollouts fleet {{ context.fleetName }}"
+  message: "Adding argo rollouts fleet {{ context.fleetName }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: fleetName
+    type: STRING
+    documentation: The name of this fleet
+  - name: devCluster
+    type: STRING
+    documentation: The name of an initial dev cluster
+  - name: prodCluster
+    type: STRING
+    documentation: The name of an initial prod cluster

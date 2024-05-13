@@ -17,9 +17,6 @@ spec:
     - source: template/prautomation.yaml
       destination: fleets/{{ context.fleetName }}/prautomation.yaml
       external: false
-    - source: template/argo-rollouts
-      destination: fleets/{{ context.fleetName }}/argo-rollouts
-      external: false
     - source: template/kube-state-metrics
       destination: fleets/{{ context.fleetName }}/kube-state-metrics
       external: false
