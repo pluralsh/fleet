@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: kube-state-metrics
+spec:
+  pipelineRef:
+    name: plrl-kube-state-metrics
+    namespace: plrl
+  context:
+    component: kube-state-metrics
+    version: 5.19.0
