@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: argo-rollouts
+spec:
+  pipelineRef:
+    name: plrl-argo-rollouts
+    namespace: plrl
+  context:
+    component: argo-rollouts
+    version: 2.35.2
