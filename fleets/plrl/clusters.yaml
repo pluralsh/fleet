@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: demo-dev
+spec:
+  handle: demo-dev
+  tags:
+    tier: dev
+    fleet: plrl
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: demo-prod
+spec:
+  handle: demo-prod
+  tags:
+    tier: prod
+    fleet: plrl
