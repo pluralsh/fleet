@@ -1,0 +1,31 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: argo-rollouts-prod
+spec:
+  name: argo-rollouts
+  namespace: argo-rollouts
+  helm:
+    chart: argo-rollouts
+    version: 2.35.2 # VERSION
+    repository:
+      name: argo
+      namespace: infra
+  clusterRef:
+    kind: Cluster
+    name: demo-prod
+    namespace: offsite
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: argo-rollouts-prod-offsite
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: argo-rollouts-prod
+    namespace: offsite
+  tags:
+    tier: dev
+    fleet: offsite
