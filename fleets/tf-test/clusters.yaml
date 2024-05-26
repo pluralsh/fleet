@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: tf-test-dev
+spec:
+  handle: tf-test-dev
+  tags:
+    tier: dev
+    fleet: tf-test
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: tf-test-prod
+spec:
+  handle: tf-test-prod
+  tags:
+    tier: prod
+    fleet: tf-test
