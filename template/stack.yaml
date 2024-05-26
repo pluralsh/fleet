@@ -24,3 +24,9 @@ spec:
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS
     value: creds.json
+  - name: TF_VAR_dev_cluster
+    value: {{ context.devCluster }}
+  - name: TF_VAR_prod_cluster
+    value: {{ context.prodCluster }}
+  - name: TF_VAR_fleet
+    value: {{ context.fleetName }}
