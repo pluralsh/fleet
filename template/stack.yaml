@@ -18,7 +18,7 @@ spec:
   git:
     ref: main
     folder: stacks/hello-world
-  files:
+  secretFiles:
   - name: gcp-creds
   - name: console-creds
   environment:
