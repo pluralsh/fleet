@@ -1,0 +1,32 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: tf-test-clusters
+spec:
+  name: tf-test-clusters
+  detach: true
+  type: TERRAFORM
+  approval: true
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  git:
+    ref: main
+    folder: terraform/tf-test
+  secretFiles:
+  - name: gcp-creds
+  - name: console-creds
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: creds.json
+  - name: TF_VAR_dev_cluster
+    value: tf-test-dev
+  - name: TF_VAR_prod_cluster
+    value: tf-test-prod
+  - name: TF_VAR_fleet
+    value: tf-test
