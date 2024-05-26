@@ -15,15 +15,16 @@ spec:
   clusterRef:
     name: mgmt
     namespace: infra
+  workdir: {{ context.fleetName }}
   git:
     ref: main
-    folder: terraform/{{ context.fleetName }}
+    folder: terraform
   secretFiles:
   - name: gcp-creds
   - name: console-creds
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS
-    value: creds.json
+    value: ../creds.json
   - name: TF_VAR_dev_cluster
     value: {{ context.devCluster }}
   - name: TF_VAR_prod_cluster

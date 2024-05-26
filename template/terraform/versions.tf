@@ -31,7 +31,7 @@ provider "google" {
 data "google_client_config" "default" {}
 
 data "local_sensitive_file" "console" {
-  filename = "${path.module}/console.yaml"
+  filename = "${path.module}/../console.yaml"
 }
 
 locals {
