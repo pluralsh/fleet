@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: tf-test-vpa
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: tf-test
+          criteria:
+            prAutomationRef:
+              name: tf-test-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: tf-test
+          criteria:
+            prAutomationRef:
+              name: tf-test-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
