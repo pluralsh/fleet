@@ -23,6 +23,9 @@ spec:
     - source: template/vpa
       destination: fleets/{{ context.fleetName }}/vpa
       external: false
+    - source: template/terraform
+      destination: terraform/{{ context.fleetName }}
+      external: false
   scmConnectionRef:
     name: gh-test
   title: "Adding fleet {{ context.fleetName }}"

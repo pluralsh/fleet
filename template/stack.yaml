@@ -1,0 +1,26 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: {{ context.fleetName }}-clusters
+spec:
+  name: {{ context.fleetName }}-clusters
+  detach: true
+  type: TERRAFORM
+  approval: true
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  git:
+    ref: main
+    folder: stacks/hello-world
+  files:
+  - name: gcp-creds
+  - name: console-creds
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: creds.json
