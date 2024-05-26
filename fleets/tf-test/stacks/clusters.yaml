@@ -17,7 +17,7 @@ spec:
     namespace: infra
   git:
     ref: main
-    folder: stacks/hello-world
+    folder: terraform/tf-test
   secretFiles:
   - name: gcp-creds
   - name: console-creds
