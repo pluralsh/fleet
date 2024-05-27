@@ -20,10 +20,10 @@ spec:
     ref: main
     folder: terraform
   files:
-  - mountPath: /plural
+  - mountPath: '.'
     secretRef:
       name: gcp-creds
-  - mountPath: /plural
+  - mountPath: '.'
     secretRef:
       name: console-creds
   environment:
