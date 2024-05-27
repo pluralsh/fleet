@@ -4,7 +4,6 @@ metadata:
   name: {{ context.fleetName }}-clusters
 spec:
   name: {{ context.fleetName }}-clusters
-  detach: true
   type: TERRAFORM
   approval: true
   configuration:
