@@ -3,7 +3,7 @@ data "google_client_config" "default" {}
 resource "plural_cluster" "this" {
     handle = var.cluster_name
     name   = var.cluster_name
-    tags   = {}
+    tags   = var.tags
 
     kubeconfig = {
       host = "https://${module.gke.endpoint}"
