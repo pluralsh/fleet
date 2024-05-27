@@ -1,7 +1,3 @@
-variable "plural_token" {
-  type = string
-}
-
 variable "cluster_name" {
   type = string
   default = "plural"

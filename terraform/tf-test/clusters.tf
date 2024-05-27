@@ -1,6 +1,5 @@
 module "dev" {
   source = "../modules/cluster"
-  plural_token = local.plural_token
   tags = {
     fleet = var.fleet
     tier = "dev"
@@ -13,7 +12,6 @@ module "dev" {
 
 module "prod" {
   source = "../modules/cluster"
-  plural_token = local.plural_token
   tags = {
     fleet = var.fleet
     tier = "prod"
