@@ -24,7 +24,7 @@ spec:
   - name: console-creds
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS
-    value: ../creds.json
+    value: /plural/creds.json
   - name: TF_VAR_dev_cluster
     value: tf-test-dev
   - name: TF_VAR_prod_cluster

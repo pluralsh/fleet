@@ -35,7 +35,7 @@ data "local_sensitive_file" "console" {
 }
 
 locals {
-    console_conf = yamldecode(data.local_sensitive_file.console).spec
+    console_conf = yamldecode(data.local_sensitive_file.console.content).spec
     plural_token = local.console_conf.token
 }
 
