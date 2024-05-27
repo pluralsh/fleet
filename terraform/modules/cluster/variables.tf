@@ -34,6 +34,7 @@ variable "node_pools_tags" {
 
 variable "project_id" {
   type = string
+  default = "pluralsh-test-384515"
 }
 
 variable "region" {
