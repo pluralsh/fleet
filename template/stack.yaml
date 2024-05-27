@@ -6,6 +6,7 @@ spec:
   name: {{ context.fleetName }}-clusters
   type: TERRAFORM
   approval: true
+  detach: false
   configuration:
     version: 1.8.2
   repositoryRef:
