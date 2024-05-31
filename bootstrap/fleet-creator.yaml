@@ -23,9 +23,6 @@ spec:
     - source: template/vpa
       destination: fleets/{{ context.fleetName }}/vpa
       external: false
-    - source: template/terraform
-      destination: terraform/{{ context.fleetName }}
-      external: false
     - source: template/stack.yaml
       destination: fleets/{{ context.fleetName }}/stacks/clusters.yaml
       external: false

@@ -1,11 +1,11 @@
-variable "dev_cluster" {
+variable "cluster" {
   type = string 
   default = "tf-test-dev"
 }
 
-variable "prod_cluster" {
+variable "tier" {
   type = string
-  default = "tf-test-prod"
+  default = "dev"
 }
 
 variable "fleet" {

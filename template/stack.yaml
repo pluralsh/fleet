@@ -1,12 +1,15 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: InfrastructureStack
 metadata:
-  name: {{ context.fleetName }}-clusters
+  name: {{ context.fleetName }}-cluster-dev
+  namespace: stacks
 spec:
-  name: {{ context.fleetName }}-clusters
+  name: {{ context.fleetName }}-cluster-dev
   type: TERRAFORM
   approval: true
   detach: false
+  manageState: true
+  actor: console@plural.sh
   configuration:
     version: 1.8.2
   repositoryRef:
@@ -15,7 +18,7 @@ spec:
   clusterRef:
     name: mgmt
     namespace: infra
-  workdir: {{ context.fleetName }}
+  workdir: gke-cluster
   git:
     ref: main
     folder: terraform
@@ -23,15 +26,50 @@ spec:
   - mountPath: /plural
     secretRef:
       name: gcp-creds
-  - mountPath: /plural
-    secretRef:
-      name: console-creds
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS
     value: /plural/creds.json
-  - name: TF_VAR_dev_cluster
+  - name: TF_VAR_cluster
     value: {{ context.devCluster }}
-  - name: TF_VAR_prod_cluster
+  - name: TF_VAR_tier
+    value: dev
+  - name: TF_VAR_fleet
+    value: {{ context.fleetName }}
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: {{ context.fleetName }}-cluster-prod
+  namespace: stacks
+spec:
+  name: {{ context.fleetName }}-cluster-prod
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: console@plural.sh
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  workdir: gke-cluster
+  git:
+    ref: main
+    folder: terraform
+  files:
+  - mountPath: /plural
+    secretRef:
+      name: gcp-creds
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: /plural/creds.json
+  - name: TF_VAR_cluster
     value: {{ context.prodCluster }}
+  - name: TF_VAR_tier
+    value: prod
   - name: TF_VAR_fleet
     value: {{ context.fleetName }}

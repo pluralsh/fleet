@@ -1,11 +1,6 @@
 terraform {
   required_version = ">= 1.0"
 
-  backend "gcs" {
-    bucket  = "plrl-fleet"
-    prefix  = "terraform/tf-test"
-  }
-
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -30,16 +25,6 @@ provider "google" {
 
 data "google_client_config" "default" {}
 
-data "local_sensitive_file" "console" {
-  filename = "${path.module}/../console.yaml"
-}
-
-locals {
-    console_conf = yamldecode(data.local_sensitive_file.console.content).spec
-    plural_token = local.console_conf.token
-}
-
 provider "plural" {
-  console_url = local.console_conf.url
-  access_token = local.console_conf.token
+  use_cli = true
 }
