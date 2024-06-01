@@ -4,7 +4,7 @@ variable "kubernetes_vsn" {
   default = "1.29"
 }
 
-variable "cluster_name" {
+variable "cluster" {
   type = string
   default = "test"
 }

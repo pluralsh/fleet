@@ -5,8 +5,8 @@ locals {
 }
 
 resource "plural_cluster" "this" {
-  handle = var.cluster_name
-  name   = var.cluster_name
+  handle = var.cluster
+  name   = var.cluster
 
   tags = {
     tier  = var.tier
