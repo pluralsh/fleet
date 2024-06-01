@@ -25,6 +25,4 @@ provider "google" {
 
 data "google_client_config" "default" {}
 
-provider "plural" {
-  use_cli = true
-}
+provider "plural" { }

@@ -11,8 +11,6 @@ terraform {
   }
 }
 
-provider "plural" {
-  use_cli = true
-}
+provider "plural" { }
 
 provider "linode" { }

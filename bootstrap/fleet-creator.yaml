@@ -32,6 +32,9 @@ spec:
   message: "Adding fleet {{ context.fleetName }}"
   identifier: pluralsh/fleet
   configuration:
+  - name: distro
+    type: STRING
+    documentation: one of [gke, lke]
   - name: fleetName
     type: STRING
     documentation: The name of this fleet
