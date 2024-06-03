@@ -1,0 +1,18 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: lke-test
+spec:
+  namespace: lke-test
+  templated: false
+  git:
+    folder: fleets/lke-test
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
