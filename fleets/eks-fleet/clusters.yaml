@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: eks-dev
+spec:
+  handle: eks-dev
+  tags:
+    tier: dev
+    fleet: eks-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: eks-prod
+spec:
+  handle: eks-prod
+  tags:
+    tier: prod
+    fleet: eks-fleet
