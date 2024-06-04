@@ -10,4 +10,6 @@ resource "plural_cluster" "this" {
       cluster_ca_certificate = base64decode(module.gke.ca_certificate)
       token = data.google_client_config.default.access_token
     }
+
+    depends_on = [ module.gcp-network ]
 }
