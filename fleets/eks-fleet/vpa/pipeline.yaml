@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: eks-fleet-vpa
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: eks-fleet
+          criteria:
+            prAutomationRef:
+              name: eks-fleet-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: eks-fleet
+          criteria:
+            prAutomationRef:
+              name: eks-fleet-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
