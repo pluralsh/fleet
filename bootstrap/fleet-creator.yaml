@@ -34,7 +34,7 @@ spec:
   configuration:
   - name: distro
     type: STRING
-    documentation: one of [gke, lke]
+    documentation: one of [gke, lke, eks]
   - name: fleetName
     type: STRING
     documentation: The name of this fleet
