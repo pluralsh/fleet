@@ -12,6 +12,13 @@ resource "plural_cluster" "this" {
         tier = var.tier
     }
 
+    metadata = {
+        iam = {
+          load_balancer = module.addons.gitops_metadata.aws_load_balancer_controller_iam_role_arn
+          cluster_autoscaler = module.addons.gitops_metadata.cluster_autoscaler_iam_role_arn
+        }
+    }
+
     kubeconfig = {
       host                   = module.eks.cluster_endpoint
       cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)

@@ -1,4 +1,4 @@
-module "eks_blueprints_addons" {
+module "addons" {
   source = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.12" #ensure to update this to the latest/desired version
 
