@@ -1,0 +1,34 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: vpa-dev
+spec:
+  name: vpa
+  namespace: vpa
+  helm:
+    chart: vpa
+    version: 4.4.5 # VERSION
+    values:
+      admissionController:
+        enabled: false
+    repository:
+      name: fairwinds
+      namespace: infra
+  clusterRef:
+    kind: Cluster
+    name: eks-dev
+    namespace: eks
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: vpa-dev-eks
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: vpa-dev
+    namespace: eks
+  tags:
+    tier: dev
+    fleet: eks
