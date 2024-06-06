@@ -34,7 +34,7 @@ spec:
       name: linode-token
       key: token
   - name: TF_VAR_cluster
-    value: gke-dev
+    value: gke-fleet-dev
   - name: TF_VAR_tier
     value: dev
   - name: TF_VAR_fleet
@@ -76,7 +76,7 @@ spec:
       name: linode-token
       key: token
   - name: TF_VAR_cluster
-    value: gke-prod
+    value: gke-fleet-prod
   - name: TF_VAR_tier
     value: prod
   - name: TF_VAR_fleet

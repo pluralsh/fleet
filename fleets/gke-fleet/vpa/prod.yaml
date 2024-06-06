@@ -16,7 +16,7 @@ spec:
       namespace: infra
   clusterRef:
     kind: Cluster
-    name: gke-prod
+    name: gke-fleet-prod
     namespace: gke-fleet
 ---
 apiVersion: deployments.plural.sh/v1alpha1
