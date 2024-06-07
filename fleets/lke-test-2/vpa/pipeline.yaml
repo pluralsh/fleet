@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: lke-test-2-vpa
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: lke-test-2
+          criteria:
+            prAutomationRef:
+              name: lke-test-2-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: lke-test-2
+          criteria:
+            prAutomationRef:
+              name: lke-test-2-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
