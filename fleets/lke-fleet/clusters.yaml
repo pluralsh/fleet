@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: lke-fleet-dev
+spec:
+  handle: lke-fleet-dev
+  tags:
+    tier: dev
+    fleet: lke-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: lke-fleet-prod
+spec:
+  handle: lke-fleet-prod
+  tags:
+    tier: prod
+    fleet: lke-fleet
