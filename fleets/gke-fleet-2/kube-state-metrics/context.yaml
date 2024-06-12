@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: kube-state-metrics
+spec:
+  pipelineRef:
+    name: gke-fleet-2-kube-state-metrics
+    namespace: gke-fleet-2
+  context:
+    component: kube-state-metrics
+    version: 5.19.0

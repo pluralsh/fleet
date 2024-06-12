@@ -1,0 +1,18 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: gke-fleet-2
+spec:
+  namespace: gke-fleet-2
+  templated: false
+  git:
+    folder: fleets/gke-fleet-2
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
