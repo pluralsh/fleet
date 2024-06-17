@@ -27,7 +27,7 @@ spec:
       destination: fleets/{{ context.fleetName }}/stacks/clusters.yaml
       external: false
   scmConnectionRef:
-    name: gh-test
+    name: test
   title: "Adding fleet {{ context.fleetName }}"
   message: "Adding fleet {{ context.fleetName }}"
   identifier: pluralsh/fleet
