@@ -33,8 +33,12 @@ spec:
   identifier: pluralsh/fleet
   configuration:
   - name: distro
-    type: STRING
-    documentation: one of [gke, lke, eks]
+    type: ENUM
+    documentation: the k8s distro to use
+    values:
+    - lke
+    - gke
+    - eks
   - name: fleetName
     type: STRING
     documentation: The name of this fleet
