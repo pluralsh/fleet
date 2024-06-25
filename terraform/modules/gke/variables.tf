@@ -5,7 +5,7 @@ variable "cluster_name" {
 
 variable "kubernetes_version" {
   type = string
-  default = "1.28.9-gke.1209000"
+  default = "1.28.10-gke.1058000"
 }
 
 variable "node_pools" {
