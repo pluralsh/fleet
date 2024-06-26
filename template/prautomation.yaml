@@ -11,7 +11,7 @@ spec:
       file: fleets/{{ context.fleetName }}/{% raw %}{{context.component }}/{{ context.pipeline.stage.name }}{% endraw %}.yaml
       replacement: "version: {% raw %}{{ context.version }}{% endraw %} # VERSION"
   scmConnectionRef:
-    name: gh-test
+    name: pluralsh
   title: Updating {% raw %}{{ context.component }} {{ context.pipeline.stage.name }}{% endraw %} helm version to {% raw %}{{ context.version }}{% endraw %} (stage={% raw %}{{ context.pipeline.stage.name }}{% endraw %})
   message: Updating {% raw %}{{ context.component }} {{ context.pipeline.stage.name }}{% endraw %} helm version to {% raw %}{{ context.version }}{% endraw %} (stage={% raw %}{{ context.pipeline.stage.name }}{% endraw %})
   identifier: pluralsh/fleet
