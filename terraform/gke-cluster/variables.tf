@@ -39,18 +39,6 @@ variable "region" {
   default     = "us-central1"
 }
 
-variable "network" {
-  type = string
-  description = "The VPC network created to host the cluster in"
-  default     = "plural-network"
-}
-
-variable "subnetwork" {
-  type = string
-  description = "The subnetwork created to host the cluster in"
-  default     = "plural-subnet"
-}
-
 variable "subnet_cidr" {
   type = string
   default = "10.0.16.0/20"

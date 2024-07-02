@@ -18,10 +18,9 @@ spec:
   clusterRef:
     name: mgmt
     namespace: infra
-  workdir: {{ context.distro }}-cluster
   git:
     ref: main
-    folder: terraform
+    folder: terraform/{{ context.distro }}-cluster
   files:
   - mountPath: /plural
     secretRef:
