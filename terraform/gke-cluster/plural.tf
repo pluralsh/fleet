@@ -1,5 +1,3 @@
-data "google_client_config" "default" {}
-
 data "plural_project" "default" {
   name = "default"
 }
