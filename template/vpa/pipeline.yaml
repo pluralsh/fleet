@@ -3,6 +3,8 @@ kind: Pipeline
 metadata:
   name: {{ context.fleetName }}-vpa
 spec:
+  projectRef:
+    name: {{ context.fleetName }}
   stages:
     - name: dev
       services:
