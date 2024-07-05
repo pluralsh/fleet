@@ -21,8 +21,9 @@ metadata:
     config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-demo
 spec:
   name: gke-demo
-  writeBindings:
-  - userEmail: gke-demo-fleet@plural.sh
+  bindings:
+    write:
+    - userEmail: gke-demo-fleet@plural.sh
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: NamespaceCredentials

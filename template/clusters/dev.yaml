@@ -31,6 +31,7 @@ spec:
     value: {{ context.fleetName }}
   jobSpec:
     serviceAccount: stacks
+    namespace: plrl-deploy-operator
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Cluster

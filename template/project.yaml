@@ -21,8 +21,9 @@ metadata:
     config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/{{ context.fleetName }}
 spec:
   name: {{ context.fleetName }}
-  writeBindings:
-  - userEmail: {{ context.fleetName }}-fleet@plural.sh
+  bindings:
+    write:
+    - userEmail: {{ context.fleetName }}-fleet@plural.sh
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: NamespaceCredentials
