@@ -41,10 +41,6 @@ spec:
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS
     value: /plural/creds.json
-  - name: LINODE_TOKEN
-    secretKeyRef:
-      name: linode-token
-      key: token
   - name: TF_VAR_enable_stacks
     value: 'true'
   - name: TF_VAR_cluster
