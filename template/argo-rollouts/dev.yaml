@@ -26,6 +26,7 @@ spec:
   serviceRef:
     name: argo-rollouts-dev
     namespace: {{ context.fleetName }}
+  projectRef:
+    name: {{ context.fleetName }}
   tags:
     tier: dev
-    fleet: {{ context.fleetName }}

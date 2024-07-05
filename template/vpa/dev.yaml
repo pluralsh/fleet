@@ -29,6 +29,7 @@ spec:
   serviceRef:
     name: vpa-dev
     namespace: {{ context.fleetName }}
+  projectRef:
+    name: {{ context.fleetName }}
   tags:
     tier: dev
-    fleet: {{ context.fleetName }}

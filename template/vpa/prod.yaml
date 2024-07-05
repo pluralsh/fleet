@@ -29,6 +29,7 @@ spec:
   serviceRef:
     name: vpa-prod
     namespace: {{ context.fleetName }}
+  projectRef:
+    name: {{ context.fleetName }}
   tags:
     tier: prod
-    fleet: {{ context.fleetName }}
