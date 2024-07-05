@@ -1,5 +1,5 @@
-data "plural_project" "default" {
-  name = "default"
+data "plural_project" "fleet" {
+  name = var.fleet
 }
 
 resource "plural_cluster" "this" {
@@ -10,7 +10,7 @@ resource "plural_cluster" "this" {
       tier = var.tier
     }
 
-    project_id = data.plural_project.default.id
+    project_id = data.plural_project.fleet.id
 
     kubeconfig = {
       host = "https://${module.gke.endpoint}"

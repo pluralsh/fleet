@@ -8,11 +8,17 @@ spec:
     Sets up a PR to provision the global services for a new fleet definition.
   creates:
     templates:
-    - source: template/fleet.yaml
+    - source: template/setup.yaml
       destination: "bootstrap/fleet/{{ context.fleetName }}.yaml"
       external: false
-    - source: template/clusters.yaml
-      destination: fleets/{{ context.fleetName }}/clusters.yaml
+    - source: template/project.yaml
+      destination: bootstrap/projects/{{ context.fleetName }}.yaml
+      external: false
+    - source: template/tf-cluster.yaml
+      destination: bootstrap/mgmt/{{ context.fleetName }}.yaml
+      external: false
+    - source: template/clusters
+      destination: fleets/{{ context.fleetName }}/clusters
       external: false
     - source: template/prautomation.yaml
       destination: fleets/{{ context.fleetName }}/prautomation.yaml
@@ -22,9 +28,6 @@ spec:
       external: false
     - source: template/vpa
       destination: fleets/{{ context.fleetName }}/vpa
-      external: false
-    - source: template/stack.yaml
-      destination: fleets/{{ context.fleetName }}/stacks/clusters.yaml
       external: false
   scmConnectionRef:
     name: plural

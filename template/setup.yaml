@@ -4,7 +4,6 @@ metadata:
   name: {{ context.fleetName }}
 spec:
   namespace: {{ context.fleetName }}
-  templated: false
   git:
     folder: fleets/{{ context.fleetName }}
     ref: main
