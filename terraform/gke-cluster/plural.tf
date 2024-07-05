@@ -2,6 +2,12 @@ data "plural_project" "fleet" {
   name = var.fleet
 }
 
+resource "time_sleep" "wait_30_seconds" {
+  create_duration = "30s"
+
+  depends_on = [module.gke.endpoint]
+}
+
 resource "plural_cluster" "this" {
     handle = var.cluster
     name   = var.cluster
@@ -18,5 +24,5 @@ resource "plural_cluster" "this" {
       token = data.google_client_config.default.access_token
     }
 
-    depends_on = [ module.gcp-network ]
+    depends_on = [ module.gcp-network, time_sleep.wait_30_seconds ]
 }
