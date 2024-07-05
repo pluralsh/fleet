@@ -1,0 +1,51 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: gke-fleet-tf
+  namespace: fleets
+spec:
+  handle: gke-fleet-tf
+  tags:
+    tier: mgmt
+    fleet: gke-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: gke-fleet-tf
+  namespace: fleets
+spec:
+  name: gke-fleet-tf
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: console@plural.sh
+  configuration:
+    version: 1.8.2
+  projectRef:
+    name: gke-fleet
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  git:
+    ref: main
+    folder: terraform/gke-cluster
+  files:
+  - mountPath: /plural
+    secretRef:
+      name: gcp-creds
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: /plural/creds.json
+  - name: TF_VAR_enable_stacks
+    value: 'true'
+  - name: TF_VAR_cluster
+    value: gke-fleet-tf
+  - name: TF_VAR_tier
+    value: dev
+  - name: TF_VAR_fleet
+    value: gke-fleet
