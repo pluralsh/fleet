@@ -30,6 +30,7 @@ spec:
   - name: TF_VAR_fleet
     value: gke-demo
   jobSpec:
+    namespace: plrl-deploy-operator
     serviceAccount: stacks
 ---
 apiVersion: deployments.plural.sh/v1alpha1
