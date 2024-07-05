@@ -3,6 +3,11 @@ variable "cluster" {
   default = "plural"
 }
 
+variable "enable_stacks" {
+  type = bool
+  default = false
+}
+
 variable "kubernetes_version" {
   type = string
   default = "1.28"

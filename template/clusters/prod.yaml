@@ -22,23 +22,15 @@ spec:
   git:
     ref: main
     folder: terraform/{{ context.distro }}-cluster
-  files:
-  - mountPath: /plural
-    secretRef:
-      name: gcp-creds
   environment:
-  - name: GOOGLE_APPLICATION_CREDENTIALS
-    value: /plural/creds.json
-  - name: LINODE_TOKEN
-    secretKeyRef:
-      name: linode-token
-      key: token
   - name: TF_VAR_cluster
     value: {{ context.prodCluster }}
   - name: TF_VAR_tier
     value: prod
   - name: TF_VAR_fleet
     value: {{ context.fleetName }}
+  jobSpec:
+    serviceAccount: stacks
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Cluster

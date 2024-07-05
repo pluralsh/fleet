@@ -45,6 +45,8 @@ spec:
     secretKeyRef:
       name: linode-token
       key: token
+  - name: TF_VAR_enable_stacks
+    value: 'true'
   - name: TF_VAR_cluster
     value: {{ context.fleetName }}-tf
   - name: TF_VAR_tier
