@@ -7,18 +7,18 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceAccount
 metadata:
   name: gke-demo
-  namespace: gke-demo
 spec:
   email: gke-demo-fleet@plural.sh
   tokenSecretRef:
     name: gke-demo-sa-token
+    namespace: gke-demo
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Project
 metadata:
   name: gke-demo
   annotations:
-    config.kubernetes.io/depends-on: deployments.plural.sh/namespaces/gke-demo/ServiceAccount/gke-demo
+    config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-demo
 spec:
   name: gke-demo
   writeBindings:
@@ -28,9 +28,9 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: NamespaceCredentials
 metadata:
   name: gke-demo
-  namespace: gke-demo
 spec:
   namespaces:
   - gke-demo
   secretRef:
     name: gke-demo-sa-token
+    namespace: gke-demo

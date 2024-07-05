@@ -7,18 +7,18 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: ServiceAccount
 metadata:
   name: {{ context.fleetName }}
-  namespace: {{ context.fleetName }}
 spec:
   email: {{ context.fleetName }}-fleet@plural.sh
   tokenSecretRef:
     name: {{ context.fleetName }}-sa-token
+    namespace: {{ context.fleetName }}
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Project
 metadata:
   name: {{ context.fleetName }}
   annotations:
-    config.kubernetes.io/depends-on: deployments.plural.sh/namespaces/{{ context.fleetName }}/ServiceAccount/{{ context.fleetName }}
+    config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/{{ context.fleetName }}
 spec:
   name: {{ context.fleetName }}
   writeBindings:
@@ -28,9 +28,9 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: NamespaceCredentials
 metadata:
   name: {{ context.fleetName }}
-  namespace: {{ context.fleetName }}
 spec:
   namespaces:
   - {{ context.fleetName }}
   secretRef:
     name: {{ context.fleetName }}-sa-token
+    namespace: {{ context.fleetName }}
