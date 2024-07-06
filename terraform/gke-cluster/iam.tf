@@ -1,3 +1,12 @@
+resource "kubernetes_namespace" "plural" {
+  metadata {
+    name = "plrl-deploy-operator"
+    labels = {
+      "app.kubernetes.io/managed-by" = "plural"
+    }
+  }
+}
+
 module "console-workload-identity" {
   count               = var.enable_stacks ? 1 : 0
   source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
@@ -9,5 +18,5 @@ module "console-workload-identity" {
   k8s_sa_name         = "stacks"
   roles               = ["roles/owner", "roles/storage.admin"]
 
-  depends_on = [ plural_cluster.this ]
+  depends_on = [ kubernetes_namespace.plural ]
 }

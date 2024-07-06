@@ -5,7 +5,7 @@ data "plural_project" "fleet" {
 resource "time_sleep" "wait_30_seconds" {
   create_duration = "30s"
 
-  depends_on = [module.gke.endpoint]
+  depends_on = [module.gke.endpoint, local.installable]
 }
 
 resource "plural_cluster" "this" {
