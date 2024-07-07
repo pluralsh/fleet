@@ -21,6 +21,7 @@ metadata:
     config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/{{ context.fleetName }}
 spec:
   name: {{ context.fleetName }}
+  description: Resources for managing the {{ context.fleetName }} fleet
   bindings:
     write:
     - userEmail: {{ context.fleetName }}-fleet@plural.sh

@@ -21,6 +21,7 @@ metadata:
     config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-fleet
 spec:
   name: gke-fleet
+  description: resources for managing the gke-fleet fleet
   bindings:
     write:
     - userEmail: gke-fleet-fleet@plural.sh
