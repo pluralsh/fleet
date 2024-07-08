@@ -1,0 +1,44 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: acme-fleet-cluster-dev-2
+spec:
+  name: acme-fleet-cluster-dev-2
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: acme-fleet-fleet@plural.sh
+  projectRef:
+    name: acme-fleet
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: acme-fleet-tf
+    namespace: fleets
+  git:
+    ref: main
+    folder: terraform/gke-cluster
+  environment:
+  - name: TF_VAR_cluster
+    value: acme-fleet-dev-2
+  - name: TF_VAR_tier
+    value: dev
+  - name: TF_VAR_fleet
+    value: acme-fleet
+  jobSpec:
+    serviceAccount: stacks
+    namespace: plrl-deploy-operator
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: acme-fleet-dev-2
+spec:
+  handle: acme-fleet-dev-2
+  tags:
+    tier: dev
+    fleet: acme-fleet
