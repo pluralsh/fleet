@@ -17,8 +17,8 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: Project
 metadata:
   name: {{ context.fleetName }}
-  annotations:
-    config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/{{ context.fleetName }}
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/{{ context.fleetName }}
 spec:
   name: {{ context.fleetName }}
   description: Resources for managing the {{ context.fleetName }} fleet
