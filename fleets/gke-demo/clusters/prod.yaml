@@ -1,0 +1,44 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: gke-demo-cluster-prod
+spec:
+  name: gke-demo-cluster-prod
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: gke-demo-fleet@plural.sh
+  projectRef:
+    name: gke-demo
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: gke-demo-tf
+    namespace: fleets
+  git:
+    ref: main
+    folder: terraform/gke-cluster
+  environment:
+  - name: TF_VAR_cluster
+    value: gke-demo-prd
+  - name: TF_VAR_tier
+    value: prod
+  - name: TF_VAR_fleet
+    value: gke-demo
+  jobSpec:
+    serviceAccount: stacks
+    namespace: plrl-deploy-operator
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: gke-demo-prd
+spec:
+  handle: gke-demo-prd
+  tags:
+    tier: prod
+    fleet: gke-demo
