@@ -9,7 +9,7 @@ spec:
   creates:
     templates:
     - source: template/setup.yaml
-      destination: "bootstrap/fleet/{{ context.fleetName }}.yaml"
+      destination: "bootstrap/fleets/{{ context.fleetName }}/setup.yaml"
       external: false
     - source: template/project.yaml
       destination: bootstrap/projects/{{ context.fleetName }}.yaml

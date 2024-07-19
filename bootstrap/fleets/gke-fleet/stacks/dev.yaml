@@ -17,8 +17,8 @@ spec:
     name: fleet
     namespace: fleets
   clusterRef:
-    name: gke-fleet-tf
-    namespace: fleets
+    name: mgmt
+    namespace: infra
   git:
     ref: main
     folder: terraform/gke-cluster

@@ -17,8 +17,8 @@ spec:
     name: fleet
     namespace: fleets
   clusterRef:
-    name: {{ context.fleetName }}-tf
-    namespace: fleets
+    name: mgmt
+    namespace: infra
   git:
     ref: main
     folder: terraform/{{ context.distro }}-cluster
