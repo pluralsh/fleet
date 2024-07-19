@@ -8,7 +8,7 @@ spec:
   approval: true
   detach: false
   manageState: true
-  actor: {{ context.fleetName }}-fleet@plural.sh
+  actor: {{ context.fleetName }}-sa@plural.sh
   projectRef:
     name: {{ context.fleetName }}
   configuration:

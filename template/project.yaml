@@ -8,7 +8,7 @@ kind: ServiceAccount
 metadata:
   name: {{ context.fleetName }}
 spec:
-  email: {{ context.fleetName }}-fleet@plural.sh
+  email: {{ context.fleetName }}-sa@plural.sh
   tokenSecretRef:
     name: {{ context.fleetName }}-sa-token
     namespace: {{ context.fleetName }}
@@ -24,7 +24,7 @@ spec:
   description: Resources for managing the {{ context.fleetName }} fleet
   bindings:
     write:
-    - userEmail: {{ context.fleetName }}-fleet@plural.sh
+    - userEmail: {{ context.fleetName }}-sa@plural.sh
 ---
 apiVersion: deployments.plural.sh/v1alpha1
 kind: NamespaceCredentials
