@@ -1,39 +1,4 @@
 apiVersion: deployments.plural.sh/v1alpha1
-kind: InfrastructureStack
-metadata:
-  name: gke-fleet-cluster-dev
-spec:
-  name: gke-fleet-cluster-dev
-  type: TERRAFORM
-  approval: true
-  detach: false
-  manageState: true
-  actor: gke-fleet-fleet@plural.sh
-  projectRef:
-    name: gke-fleet
-  configuration:
-    version: 1.8.2
-  repositoryRef:
-    name: fleet
-    namespace: fleets
-  clusterRef:
-    name: gke-fleet-tf
-    namespace: fleets
-  git:
-    ref: main
-    folder: terraform/gke-cluster
-  environment:
-  - name: TF_VAR_cluster
-    value: gke-fleet-dev
-  - name: TF_VAR_tier
-    value: dev
-  - name: TF_VAR_fleet
-    value: gke-fleet
-  jobSpec:
-    serviceAccount: stacks
-    namespace: plrl-deploy-operator
----
-apiVersion: deployments.plural.sh/v1alpha1
 kind: Cluster
 metadata:
   name: gke-fleet-dev
