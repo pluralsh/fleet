@@ -14,11 +14,11 @@ spec:
     - source: template/project.yaml
       destination: bootstrap/projects/{{ context.fleetName }}.yaml
       external: false
-    - source: template/tf-cluster.yaml
-      destination: bootstrap/mgmt/{{ context.fleetName }}.yaml
-      external: false
     - source: template/clusters
       destination: fleets/{{ context.fleetName }}/clusters
+      external: false
+    - source: template/stacks
+      destination: bootstrap/fleets/{{ context.fleetName }}/stacks
       external: false
     - source: template/prautomation.yaml
       destination: fleets/{{ context.fleetName }}/prautomation.yaml

@@ -1,39 +1,4 @@
 apiVersion: deployments.plural.sh/v1alpha1
-kind: InfrastructureStack
-metadata:
-  name: {{ context.fleetName }}-cluster-prod
-spec:
-  name: {{ context.fleetName }}-cluster-prod
-  type: TERRAFORM
-  approval: true
-  detach: false
-  manageState: true
-  actor: {{ context.fleetName }}-fleet@plural.sh
-  projectRef:
-    name: {{ context.fleetName }}
-  configuration:
-    version: 1.8.2
-  repositoryRef:
-    name: fleet
-    namespace: fleets
-  clusterRef:
-    name: {{ context.fleetName }}-tf
-    namespace: fleets
-  git:
-    ref: main
-    folder: terraform/{{ context.distro }}-cluster
-  environment:
-  - name: TF_VAR_cluster
-    value: {{ context.prodCluster }}
-  - name: TF_VAR_tier
-    value: prod
-  - name: TF_VAR_fleet
-    value: {{ context.fleetName }}
-  jobSpec:
-    serviceAccount: stacks
-    namespace: plrl-deploy-operator
----
-apiVersion: deployments.plural.sh/v1alpha1
 kind: Cluster
 metadata:
   name: {{ context.prodCluster }}
