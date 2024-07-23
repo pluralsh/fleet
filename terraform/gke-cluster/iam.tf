@@ -1,4 +1,5 @@
 resource "kubernetes_namespace" "plural" {
+  count = var.enable_stacks ? 1 : 0
   metadata {
     name = "plrl-deploy-operator"
     labels = {
