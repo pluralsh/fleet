@@ -1,0 +1,35 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: vpa-dev
+spec:
+  name: vpa
+  namespace: vpa
+  helm:
+    chart: vpa
+    version: 4.4.5 # VERSION
+    values:
+      admissionController:
+        enabled: false
+    repository:
+      name: fairwinds
+      namespace: infra
+  clusterRef:
+    kind: Cluster
+    name: acme-dev
+    namespace: acme-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: vpa-dev-acme-fleet
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: vpa-dev
+    namespace: acme-fleet
+  projectRef:
+    name: acme-fleet
+  tags:
+    tier: dev
