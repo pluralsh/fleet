@@ -1,0 +1,17 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: blaze-demo
+spec:
+  namespace: blaze-demo
+  git:
+    folder: fleets/blaze-demo
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra

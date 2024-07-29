@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: blaze-demo-vpa
+spec:
+  projectRef:
+    name: blaze-demo
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: blaze-demo
+          criteria:
+            prAutomationRef:
+              name: blaze-demo-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: blaze-demo
+          criteria:
+            prAutomationRef:
+              name: blaze-demo-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
