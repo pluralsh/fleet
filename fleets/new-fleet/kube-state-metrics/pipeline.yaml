@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: new-fleet-kube-state-metrics
+spec:
+  projectRef:
+    name: new-fleet
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: kube-state-metrics-dev
+            namespace: new-fleet
+          criteria:
+            prAutomationRef:
+              name: new-fleet-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: kube-state-metrics-prod
+            namespace: new-fleet
+          criteria:
+            prAutomationRef:
+              name: new-fleet-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
