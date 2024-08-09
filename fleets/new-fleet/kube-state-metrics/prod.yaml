@@ -1,0 +1,32 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: kube-state-metrics-prod
+spec:
+  name: kube-state-metrics
+  namespace: kube-state-metrics
+  helm:
+    chart: kube-state-metrics
+    version: 5.19.0 # VERSION
+    repository:
+      name: prometheus
+      namespace: infra
+  clusterRef:
+    kind: Cluster
+    name: new-fleet-prod
+    namespace: new-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: kube-state-metrics-prod-new-fleet
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: kube-state-metrics-prod
+    namespace: new-fleet
+  projectRef:
+    name: new-fleet
+  tags:
+    tier: prod

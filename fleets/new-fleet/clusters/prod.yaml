@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: new-fleet-prod
+spec:
+  handle: new-fleet-prod
+  tags:
+    tier: prod
+    fleet: new-fleet
