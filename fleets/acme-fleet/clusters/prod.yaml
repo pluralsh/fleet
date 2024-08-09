@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: acme-prd
-spec:
-  handle: acme-prd
-  tags:
-    tier: prod
-    fleet: acme-fleet

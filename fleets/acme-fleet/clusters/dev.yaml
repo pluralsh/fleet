@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: acme-dev
-spec:
-  handle: acme-dev
-  tags:
-    tier: dev
-    fleet: acme-fleet
