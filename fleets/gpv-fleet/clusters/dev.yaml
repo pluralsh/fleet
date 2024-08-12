@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gpv-fleet-dev
-spec:
-  handle: gpv-fleet-dev
-  tags:
-    tier: dev
-    fleet: gpv-fleet
