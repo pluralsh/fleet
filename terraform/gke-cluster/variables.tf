@@ -15,7 +15,7 @@ variable "kubernetes_version" {
 
 variable "node_pools" {
   type = list(any)
-  default = [ {name = "default-node-pool"} ]
+  default = [ {name = "new-node-pool"} ]
 }
 
 variable "node_pools_taints" {
