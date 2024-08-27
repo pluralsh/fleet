@@ -23,6 +23,8 @@ spec:
   name: gke-demo
   description: Resources for managing the gke-demo fleet
   bindings:
+    read:
+    - groupName: testers
     write:
     - userEmail: gke-demo-sa@plural.sh
 ---
