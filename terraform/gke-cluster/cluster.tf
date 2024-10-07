@@ -21,6 +21,8 @@ module "gke" {
 
   datapath_provider = "ADVANCED_DATAPATH"
 
+  release_channel = "UNSPECIFIED"
+
   depends_on = [
     google_project_service.gcr,
     google_project_service.container,
