@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: test-vpa
+spec:
+  projectRef:
+    name: test
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: test
+          criteria:
+            prAutomationRef:
+              name: test-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: test
+          criteria:
+            prAutomationRef:
+              name: test-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
