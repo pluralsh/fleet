@@ -27,7 +27,7 @@ spec:
     secretRef:
       name: gcp-creds
   variables:
-    cluster: {{ context.devCluster }}
+    cluster: {{ context.prodCluster }}
     tier: prod
     fleet: {{ context.fleetName }}
   environment:

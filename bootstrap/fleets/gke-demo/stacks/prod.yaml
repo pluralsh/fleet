@@ -27,7 +27,7 @@ spec:
     secretRef:
       name: gcp-creds
   variables:
-    cluster: gke-demo-dev
+    cluster: gke-demo-prod
     tier: prod
     fleet: gke-demo
   environment:
