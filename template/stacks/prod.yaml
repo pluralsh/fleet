@@ -28,7 +28,7 @@ spec:
       name: gcp-creds
   variables:
     cluster: {{ context.devCluster }}
-    tier: dev
+    tier: prod
     fleet: {{ context.fleetName }}
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS

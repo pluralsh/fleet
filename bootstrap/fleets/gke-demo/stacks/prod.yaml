@@ -28,7 +28,7 @@ spec:
       name: gcp-creds
   variables:
     cluster: gke-demo-dev
-    tier: dev
+    tier: prod
     fleet: gke-demo
   environment:
   - name: GOOGLE_APPLICATION_CREDENTIALS
