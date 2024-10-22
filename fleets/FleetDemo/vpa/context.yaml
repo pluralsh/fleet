@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: vpa
+spec:
+  pipelineRef:
+    name: FleetDemo-vpa
+    namespace: FleetDemo
+  context:
+    component: vpa
+    version: 4.4.5

@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: FleetDemo_PRD
+spec:
+  handle: FleetDemo_PRD
+  tags:
+    tier: prod
+    fleet: FleetDemo

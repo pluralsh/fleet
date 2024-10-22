@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: FleetDemo_DEV
+spec:
+  handle: FleetDemo_DEV
+  tags:
+    tier: dev
+    fleet: FleetDemo
