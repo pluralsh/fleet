@@ -13,7 +13,7 @@ spec:
       namespace: infra
   clusterRef:
     kind: Cluster
-    name: gke-test-prd
+    name: gke-test-prod
     namespace: gke-test
 ---
 apiVersion: deployments.plural.sh/v1alpha1
