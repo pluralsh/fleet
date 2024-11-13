@@ -16,7 +16,7 @@ spec:
       namespace: infra
   clusterRef:
     kind: Cluster
-    name: gke-demo-dev
+    name: gke-deno-dev
     namespace: gke-demo
 ---
 apiVersion: deployments.plural.sh/v1alpha1
