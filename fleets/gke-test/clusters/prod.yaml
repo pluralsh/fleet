@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: gke-test-prd
+spec:
+  handle: gke-test-prd
+  tags:
+    tier: prod
+    fleet: gke-test

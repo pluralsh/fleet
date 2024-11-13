@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gke-test
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: gke-test
+spec:
+  email: gke-test-sa@plural.sh
+  tokenSecretRef:
+    name: gke-test-sa-token
+    namespace: gke-test
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: gke-test
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-test
+spec:
+  name: gke-test
+  description: Resources for managing the gke-test fleet
+  bindings:
+    write:
+    - userEmail: gke-test-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: gke-test
+spec:
+  namespaces:
+  - gke-test
+  secretRef:
+    name: gke-test-sa-token
+    namespace: gke-test
