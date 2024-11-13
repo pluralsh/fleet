@@ -1,9 +1,9 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Cluster
 metadata:
-  name: gke-deno-dev
+  name: gke-demo-dev
 spec:
-  handle: gke-deno-dev
+  handle: gke-demo-dev
   tags:
     tier: dev
     fleet: gke-demo
