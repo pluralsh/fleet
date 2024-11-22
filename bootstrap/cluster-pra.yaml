@@ -11,7 +11,7 @@ spec:
       file: terraform/gke-cluster/variables.tf
       replacement: "default = \"{{ context.version }}\" # {{ context.pipeline.stage.name }} version"
   scmConnectionRef:
-    name: pluralsh
+    name: plural
   title: Updating {{ context.pipeline.stage.name }} clusters to {{ context.version }}
   message: Updating {{ context.pipeline.stage.name }} clusters to {{ context.version }}
   identifier: pluralsh/fleet
