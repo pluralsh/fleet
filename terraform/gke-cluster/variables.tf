@@ -10,7 +10,7 @@ variable "enable_stacks" {
 
 variable "dev_kubernetes_version" {
   type = string
-  default = "1.28" # dev version
+  default = "1.29" # dev version
 }
 
 variable "prod_kubernetes_version" {
