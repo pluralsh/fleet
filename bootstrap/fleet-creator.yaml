@@ -21,7 +21,7 @@ spec:
       destination: fleets/clusters/dev/{{ context.fleetName }}/{{ context.devCluster }}.yaml
       external: false
     - source: template/stacks/prod.yaml
-      destination: fleets/clusters/dev/{{ context.fleetName }}/{{ context.prodCluster }}.yaml
+      destination: fleets/clusters/prod/{{ context.fleetName }}/{{ context.prodCluster }}.yaml
       external: false
     - source: template/prautomation.yaml
       destination: fleets/{{ context.fleetName }}/prautomation.yaml
