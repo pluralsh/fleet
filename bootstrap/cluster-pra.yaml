@@ -7,7 +7,7 @@ spec:
   documentation: Updates the k8s version of a given stage of cluster
   updates:
     regexReplacements:
-    - regex: "version: (.*) # {{ context.pipeline.stage.name }} version"
+    - regex: "default = (.*) # {{ context.pipeline.stage.name }} version"
       file: terraform/gke-cluster/variables.tf
       replacement: "default = \"{{ context.version }}\" # {{ context.pipeline.stage.name }} version"
   scmConnectionRef:
