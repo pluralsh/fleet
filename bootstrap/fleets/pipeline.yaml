@@ -1,0 +1,28 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: cluster-upgrades
+spec:
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: clusters-dev
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: gke-cluster-upgrade-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: clusters-prod
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: gke-cluster-upgrade-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
