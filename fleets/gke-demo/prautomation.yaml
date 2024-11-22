@@ -8,12 +8,12 @@ spec:
   updates:
     regexReplacements:
     - regex: "version: (.*) # VERSION"
-      file: fleets/gke-demo/{{context.component }}/{{ context.pipeline.stage.name }}.yaml
-      replacement: "version: {{ context.version }} # VERSION"
+      file: fleets/gke-demo//.yaml
+      replacement: "version:  # VERSION"
   scmConnectionRef:
-    name: pluralsh
-  title: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
-  message: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
+    name: plural
+  title: Updating   helm version to  (stage=)
+  message: Updating   helm version to  (stage=)
   identifier: pluralsh/fleet
   configuration:
   - name: component
