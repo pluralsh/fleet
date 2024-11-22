@@ -8,12 +8,12 @@ spec:
   updates:
     regexReplacements:
     - regex: "version: (.*) # VERSION"
-      file: fleets/{{ context.fleetName }}/{{context.component }}/{{ context.pipeline.stage.name }}.yaml
-      replacement: "version: {{ context.version }} # VERSION"
+      file: fleets/{{ context.fleetName }}/{% raw %}{{context.component }}/{{ context.pipeline.stage.name }}{% endraw %}.yaml
+      replacement: "version: {% raw %}{{ context.version }}{% endraw %} # VERSION"
   scmConnectionRef:
-    name: plural
-  title: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
-  message: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
+    name: pluralsh
+  title: Updating {% raw %}{{ context.component }} {{ context.pipeline.stage.name }}{% endraw %} helm version to {% raw %}{{ context.version }}{% endraw %} (stage={% raw %}{{ context.pipeline.stage.name }}{% endraw %})
+  message: Updating {% raw %}{{ context.component }} {{ context.pipeline.stage.name }}{% endraw %} helm version to {% raw %}{{ context.version }}{% endraw %} (stage={% raw %}{{ context.pipeline.stage.name }}{% endraw %})
   identifier: pluralsh/fleet
   configuration:
   - name: component
