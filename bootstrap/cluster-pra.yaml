@@ -7,9 +7,9 @@ spec:
   documentation: Updates the k8s version of a given stage of cluster for a fleet
   updates:
     regexReplacements:
-    - regex: "kubeVersion: (.*) # {{ context.pipeline.stage.name }} version"
-      file: fleets/{{ context.fleet }}/clusters.yaml
-      replacement: "kubeVersion: \"{{ context.version }}\" # {{ context.pipeline.stage.name }} version"
+    - regex: "kubernetesVersion: (.*) # version"
+      file: bootstrap/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      replacement: "kubernetesVersion: \"{{ context.version }}\" # version"
   scmConnectionRef:
     name: plural
   title: Updating {{ context.fleet }} {{ context.pipeline.stage.name }} clusters to {{ context.version }}

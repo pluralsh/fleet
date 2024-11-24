@@ -26,8 +26,8 @@ spec:
     - source: template/prautomation.yaml
       destination: fleets/{{ context.fleetName }}/prautomation.yaml
       external: false
-    - source: template/clusters.yaml
-      destination: fleets/{{ context.fleetName }}/clusters.yaml
+    - source: template/fleet
+      destination: bootstrp/fleets/{{ context.fleetName }}/clusters
       external: false
     - source: template/fleet-pipeline.yaml
       destination: fleets/{{ context.fleetName }}/pipeline.yaml

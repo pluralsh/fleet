@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: clusters-{{ context.fleetName }}-prod
+spec:
+  namespace: {{ context.fleetName }}
+  git:
+    folder: fleets/clusters/{{ context.fleetName }}/prod
+    ref: main
+  configuration:
+    kubernetesVersion: "1.28" # version
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
