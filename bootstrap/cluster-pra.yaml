@@ -1,21 +1,24 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: PrAutomation
 metadata:
-  name: gke-cluster-upgrade-pra
+  name: fleet-upgrade-pra
 spec:
-  name: gke-cluster-upgrade-pra
-  documentation: Updates the k8s version of a given stage of cluster
+  name: fleet-upgrade-pra
+  documentation: Updates the k8s version of a given stage of cluster for a fleet
   updates:
     regexReplacements:
-    - regex: "default = (.*) # {{ context.pipeline.stage.name }} version"
-      file: terraform/gke-cluster/variables.tf
-      replacement: "default = \"{{ context.version }}\" # {{ context.pipeline.stage.name }} version"
+    - regex: "kubeVersion: (.*) # {{ context.pipeline.stage.name }} version"
+      file: fleets/{{ context.fleet }}/clusters.yaml
+      replacement: "kubeVersion: \"{{ context.version }}\" # {{ context.pipeline.stage.name }} version"
   scmConnectionRef:
     name: plural
-  title: Updating {{ context.pipeline.stage.name }} clusters to {{ context.version }}
-  message: Updating {{ context.pipeline.stage.name }} clusters to {{ context.version }}
+  title: Updating {{ context.fleet }} {{ context.pipeline.stage.name }} clusters to {{ context.version }}
+  message: Updating {{ context.fleet }} {{ context.pipeline.stage.name }} clusters to {{ context.version }}
   identifier: pluralsh/fleet
   configuration:
+  - name: fleet
+    type: STRING
+    documentation: "the fleet to update"
   - name: version
     type: STRING
     documentation: The k8s version to use

@@ -1,25 +1,27 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Pipeline
 metadata:
-  name: cluster-upgrades
+  name: {{ context.fleetName }}-fleet-upgrade
 spec:
   stages:
     - name: dev
       services:
         - serviceRef:
-            name: clusters-dev
-            namespace: fleets
+            name: clusters-{{ context.fleetName }}-dev
+            namespace: {{ context.fleetName }}
           criteria:
             prAutomationRef:
-              name: gke-cluster-upgrade-pra
+              name: fleet-upgrade-pra
+              namespace: fleets
     - name: prod
       services:
         - serviceRef:
-            name: clusters-prod
-            namespace: fleets
+            name: clusters-{{ context.fleetName }}-prod
+            namespace: {{ context.fleetName }}
           criteria:
             prAutomationRef:
-              name: gke-cluster-upgrade-pra
+              name: fleet-upgrade-pra
+              namespace: fleets
   edges:
     - from: dev
       to: prod

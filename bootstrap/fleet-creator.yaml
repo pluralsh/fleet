@@ -18,13 +18,19 @@ spec:
       destination: fleets/{{ context.fleetName }}/clusters
       external: false
     - source: template/stacks/dev.yaml
-      destination: fleets/clusters/dev/{{ context.fleetName }}/{{ context.devCluster }}.yaml
+      destination: fleets/clusters/{{ context.fleetName }}/dev/{{ context.devCluster }}.yaml.liquid
       external: false
     - source: template/stacks/prod.yaml
-      destination: fleets/clusters/prod/{{ context.fleetName }}/{{ context.prodCluster }}.yaml
+      destination: fleets/clusters/{{ context.fleetName }}/prod/{{ context.prodCluster }}.yaml.liquid
       external: false
     - source: template/prautomation.yaml
       destination: fleets/{{ context.fleetName }}/prautomation.yaml
+      external: false
+    - source: template/clusters.yaml
+      destination: fleets/{{ context.fleetName }}/clusters.yaml
+      external: false
+    - source: template/fleet-pipeline.yaml
+      destination: fleets/{{ context.fleetName }}/pipeline.yaml
       external: false
     - source: template/kube-state-metrics
       destination: fleets/{{ context.fleetName }}/kube-state-metrics

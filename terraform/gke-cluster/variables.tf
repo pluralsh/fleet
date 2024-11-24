@@ -8,14 +8,9 @@ variable "enable_stacks" {
   default = false
 }
 
-variable "dev_kubernetes_version" {
+variable "kubernetes_version" {
   type = string
-  default = "1.29" # dev version
-}
-
-variable "prod_kubernetes_version" {
-  type = string
-  default = "1.28" # prod version
+  default = "1.28" # dev version
 }
 
 variable "node_pools" {
