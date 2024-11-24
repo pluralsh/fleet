@@ -3,7 +3,7 @@ kind: ServiceDeployment
 metadata:
   name: clusters-{{ context.fleetName }}-dev
 spec:
-  namespace: {{ context.fleetName }}
+  namespace: fleets
   git:
     folder: fleets/clusters/{{ context.fleetName }}/dev
     ref: main
