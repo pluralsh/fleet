@@ -27,10 +27,10 @@ spec:
       destination: fleets/{{ context.fleetName }}/prautomation.yaml
       external: false
     - source: template/fleet
-      destination: bootstrp/fleets/{{ context.fleetName }}/clusters
+      destination: bootstrap/fleets/{{ context.fleetName }}/clusters
       external: false
     - source: template/fleet-pipeline.yaml
-      destination: fleets/{{ context.fleetName }}/pipeline.yaml
+      destination: bootstrap/fleets/{{ context.fleetName }}/pipeline.yaml
       external: false
     - source: template/kube-state-metrics
       destination: fleets/{{ context.fleetName }}/kube-state-metrics
