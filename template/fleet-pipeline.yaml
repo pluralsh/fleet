@@ -8,7 +8,7 @@ spec:
       services:
         - serviceRef:
             name: clusters-{{ context.fleetName }}-dev
-            namespace: {{ context.fleetName }}
+            namespace: fleets
           criteria:
             prAutomationRef:
               name: fleet-upgrade-pra
@@ -17,7 +17,7 @@ spec:
       services:
         - serviceRef:
             name: clusters-{{ context.fleetName }}-prod
-            namespace: {{ context.fleetName }}
+            namespace: fleets
           criteria:
             prAutomationRef:
               name: fleet-upgrade-pra
