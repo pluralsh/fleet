@@ -3,7 +3,7 @@ kind: ServiceDeployment
 metadata:
   name: clusters-gke-fleet-dev
 spec:
-  namespace: gke-fleet
+  namespace: fleets
   git:
     folder: fleets/clusters/gke-fleet/dev
     ref: main
