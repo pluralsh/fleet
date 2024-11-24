@@ -8,7 +8,7 @@ spec:
   updates:
     regexReplacements:
     - regex: "kubernetesVersion: (.*) # version"
-      file: bootstrap/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
       replacement: "kubernetesVersion: \"{{ context.version }}\" # version"
   scmConnectionRef:
     name: plural
