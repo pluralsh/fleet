@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: {{ context.fleet }}-pipeline-context
+spec:
+  pipelineRef:
+    name: {{ context.fleet }}-fleet-upgrade
+    namespace: fleets
+  context:
+    fleet: {{ context.fleet }}
+    version: '{{ context.version }}'

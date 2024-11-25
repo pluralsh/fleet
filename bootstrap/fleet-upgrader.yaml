@@ -1,0 +1,27 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-upgrader
+spec:
+  name: fleet-upgrader
+  documentation: |
+    Triggers a pipelined upgrade to a fleet to a target k8s version
+  creates:
+    templates:
+    - source: template/context.yaml
+      destination: "bootstrap/fleets/{{ context.fleetName }}/context.yaml"
+      external: false
+  scmConnectionRef:
+    name: plural
+  title: "Upgrading fleet {{ context.fleetName }} to {{ context.version }}"
+  message: "Upgrading fleet {{ context.fleetName }} to {{ context.version }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: fleet
+    type: STRING
+    documentation: The name of this fleet
+  - name: version
+    type: STRING
+    documentation: The kubernetes version to upgrade to
+    validation:
+      regex: "1.(2|3)(0-9)"
