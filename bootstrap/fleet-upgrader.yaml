@@ -9,12 +9,12 @@ spec:
   creates:
     templates:
     - source: template/context.yaml
-      destination: "bootstrap/fleets/{{ context.fleetName }}/context.yaml"
+      destination: "bootstrap/fleets/{{ context.fleet }}/context.yaml"
       external: false
   scmConnectionRef:
     name: plural
-  title: "Upgrading fleet {{ context.fleetName }} to {{ context.version }}"
-  message: "Upgrading fleet {{ context.fleetName }} to {{ context.version }}"
+  title: "Upgrading fleet {{ context.fleet }} to {{ context.version }}"
+  message: "Upgrading fleet {{ context.fleet }} to {{ context.version }}"
   identifier: pluralsh/fleet
   configuration:
   - name: fleet
