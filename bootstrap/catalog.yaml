@@ -1,0 +1,7 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Catalog
+metadata:
+  name: fleet
+spec:
+  author: Plural
+  category: kubernetes
