@@ -4,9 +4,9 @@ metadata:
   name: fleet-upgrader
 spec:
   name: fleet-upgrader
-  # catalogRef:
-  #   name: fleet
-  #   namespace: fleets
+  catalogRef:
+    name: fleet
+    namespace: fleets
   documentation: |
     Triggers a pipelined upgrade to a fleet to a target k8s version
   creates:
