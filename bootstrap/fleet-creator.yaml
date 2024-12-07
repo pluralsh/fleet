@@ -6,7 +6,6 @@ spec:
   name: fleet-creator
   catalogRef:
     name: fleet
-    namespace: fleets
   documentation: |
     Sets up a PR to provision the global services for a new fleet definition.
   creates:
