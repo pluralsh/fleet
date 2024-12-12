@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: clusters-gke-fleet-prod
+spec:
+  namespace: fleets
+  git:
+    folder: fleets/clusters/gke-fleet/prod
+    ref: main
+  configuration:
+    kubernetesVersion: "1.28" # version
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
