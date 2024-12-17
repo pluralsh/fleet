@@ -8,4 +8,4 @@ spec:
     namespace: fleets
   context:
     fleet: gke-fleet
-    version: '1.30'
+    version: '1.31'
