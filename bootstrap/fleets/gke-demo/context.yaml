@@ -8,4 +8,4 @@ spec:
     namespace: fleets
   context:
     fleet: gke-demo
-    version: '1.29'
+    version: '1.30'
