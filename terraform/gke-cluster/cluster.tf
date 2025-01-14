@@ -11,7 +11,7 @@ module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google"
   version = "~> 35.0"
 
-  kubernetes_version     = var.kubernetes_version
+  kubernetes_version     = var.next_kubernetes_version
   project_id             = var.project_id
   name                   = var.cluster
   regional               = true
