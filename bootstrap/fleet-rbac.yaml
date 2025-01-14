@@ -1,0 +1,26 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-rbac
+spec:
+  name: fleet-rbac
+  catalogRef:
+    name: fleet
+  documentation: Sets up rbac bindings for a given fleet
+  creates:
+    templates:
+    - source: template/rbac.yaml
+      destination: fleets/{{ context.fleetName }}/rbac.yaml
+      external: false
+  scmConnectionRef:
+    name: plural
+  title: "Adding rbac bindings to fleet {{ context.fleetName }}"
+  message: "Adding rbac bindings to fleet {{ context.fleetName }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: fleetName
+    type: STRING
+    documentation: The name of this fleet
+  - name: readers
+    type: STRING
+    documentation: The name of an initial dev cluster
