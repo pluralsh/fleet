@@ -15,7 +15,7 @@ spec:
       destination: fleets/{{ context.fleetName }}/argo-rollouts
       external: false
   scmConnectionRef:
-    name: gh-test
+    name: plural
   title: "Adding argo rollouts to fleet {{ context.fleetName }}"
   message: "Adding argo rollouts to fleet {{ context.fleetName }}"
   identifier: pluralsh/fleet
