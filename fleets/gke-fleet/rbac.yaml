@@ -1,0 +1,17 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: gke-fleet-rbac
+spec:
+  projectRef:
+    name: gke-fleet
+
+  template:
+    repositoryRef:
+      name: fleets
+      namespace: fleets
+    git:
+      ref: main
+      folder: services/rbac
+    configuration:
+      readGroup: developers
