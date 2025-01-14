@@ -22,7 +22,7 @@ spec:
             prAutomationRef:
               name: fleet-upgrade-pra
               namespace: fleets
-    - name: dev-taint
+    - name: prod-taint
       services:
         - serviceRef:
             name: clusters-gke-fleet-prod
