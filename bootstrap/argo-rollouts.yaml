@@ -4,6 +4,9 @@ metadata:
   name: argo-rollouts
 spec:
   name: argo-rollouts
+  catalogRef:
+    name: fleet
+  icon: https://argo-rollouts.readthedocs.io/en/stable/assets/logo.png
   documentation: |
     Sets up a PR to provision argo-rollouts for your fleet
   creates:
@@ -13,8 +16,8 @@ spec:
       external: false
   scmConnectionRef:
     name: gh-test
-  title: "Adding argo rollouts fleet {{ context.fleetName }}"
-  message: "Adding argo rollouts fleet {{ context.fleetName }}"
+  title: "Adding argo rollouts to fleet {{ context.fleetName }}"
+  message: "Adding argo rollouts to fleet {{ context.fleetName }}"
   identifier: pluralsh/fleet
   configuration:
   - name: fleetName
