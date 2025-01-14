@@ -1,6 +1,6 @@
 locals {
   node_pool_add = {
-    (var.active_node_group) = {version = var.next_kubernetes_version, auto_upgrade = false},
+    (var.active_node_group) = {version = var.next_kubernetes_version, auto_upgrade = false, min_count = 2},
     (var.drain_node_group) = {version = var.kubernetes_version, auto_upgrade = false}
   }
 
