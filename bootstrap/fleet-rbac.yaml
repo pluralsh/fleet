@@ -24,3 +24,6 @@ spec:
   - name: readers
     type: STRING
     documentation: The name of an initial dev cluster
+  - name: clusterName
+    type: STRING
+    documentation: a cluster in the fleet to seed the global service
