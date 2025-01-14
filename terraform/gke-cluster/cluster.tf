@@ -26,7 +26,7 @@ module "gke" {
   node_pools             = [for k, v in local.full_node_pools: merge(v, {name = k})]
   node_pools_taints      = merge(var.node_pools_taints, {
     (var.active_node_group) = [],
-    (var.drain_node_group) = [{key = "platform.plural.sh/pending", value="upgrade", effect="NoSchedule"}]
+    (var.drain_node_group) = [{key = "platform.plural.sh/pending", value="upgrade", effect="NO_SCHEDULE"}]
   })
   node_pools_labels      = var.node_pools_labels
   node_pools_tags        = var.node_pools_tags
