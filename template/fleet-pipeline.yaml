@@ -41,18 +41,8 @@ spec:
               name: fleet-upgrade-pra
               namespace: fleets
   edges:
-    - from: dev-taint
-      to: dev-upgrade
-      gates:
-      - name: approval-gate
-        type: APPROVAL
-    - from: dev-upgrade
-      to: prod-taint
-      gates:
-      - name: approval-gate
-        type: APPROVAL
-    - from: prod-taint
-      to: prod-upgrade
-      gates:
-      - name: approval-gate
-        type: APPROVAL
+  - from: dev-upgrade
+    to: prod-taint
+    gates:
+    - name: approval-gate
+      type: APPROVAL
