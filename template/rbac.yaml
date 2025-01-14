@@ -1,17 +1,28 @@
 apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: {{ context.fleetName }}-rbac
+spec:
+  clusterRef:
+    name: {{ context.clusterName }}
+    namespace: {{ context.fleetName }}
+  repositoryRef:
+    name: fleets
+    namespace: fleets
+  configuration:
+    readGroup: {{ context.readers }}
+  git:
+    ref: main
+    folder: services/rbac
+---
+apiVersion: deployments.plural.sh/v1alpha1
 kind: GlobalService
 metadata:
   name: {{ context.fleetName }}-rbac
 spec:
   projectRef:
     name: {{ context.fleetName }}
-
-  template:
-    repositoryRef:
-      name: fleets
-      namespace: fleets
-    git:
-      ref: main
-      folder: services/rbac
-    configuration:
-      readGroup: {{ context.readers }}
+  
+  serviceRef:
+    name: {{ context.fleetName }}-rbac
+    namespace: {{ context.fleetName }}
