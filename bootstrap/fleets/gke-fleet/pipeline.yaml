@@ -1,0 +1,48 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: gke-fleet-fleet-upgrade
+spec:
+  stages:
+    - name: dev-taint
+      services:
+        - serviceRef:
+            name: clusters-gke-fleet-dev
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: fleet-taint-pra
+              namespace: fleets
+    - name: dev-upgrade
+      services:
+        - serviceRef:
+            name: clusters-gke-fleet-dev
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: fleet-upgrade-pra
+              namespace: fleets
+    - name: prod-taint
+      services:
+        - serviceRef:
+            name: clusters-gke-fleet-prod
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: fleet-taint-pra
+              namespace: fleets
+    - name: prod-upgrade
+      services:
+        - serviceRef:
+            name: clusters-gke-fleet-prod
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: fleet-upgrade-pra
+              namespace: fleets
+  edges:
+  - from: dev-upgrade
+    to: prod-taint
+    gates:
+    - name: approval-gate
+      type: APPROVAL
