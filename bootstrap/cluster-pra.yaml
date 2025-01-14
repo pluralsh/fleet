@@ -8,12 +8,12 @@ spec:
   updates:
     regexReplacements:
     - regex: "kubernetesVersion: (.*) # version"
-      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml
       replacement: "kubernetesVersion: \"{{ context.version }}\" # version"
   scmConnectionRef:
     name: plural
-  title: Updating {{ context.fleet }} {{ context.pipeline.stage.name }} clusters to {{ context.version }}
-  message: Updating {{ context.fleet }} {{ context.pipeline.stage.name }} clusters to {{ context.version }}
+  title: Updating {{ context.fleet }} {{ context.pipeline.stage.name | split: '-' | first }} clusters to {{ context.version }}
+  message: Updating {{ context.fleet }} {{ context.pipeline.stage.name | split: '-' | first }} clusters to {{ context.version }}
   identifier: pluralsh/fleet
   configuration:
   - name: fleet
@@ -33,11 +33,14 @@ spec:
   updates:
     regexReplacements:
     - regex: "drain: (.*) # drain"
-      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml
       replacement: "drain: \"{{ context.drain }}\" # drain"
     - regex: "active: (.*) # active"
-      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml
       replacement: "active: \"{{ context.active }}\" # active"
+    - regex: "nextKubernetesVersion: (.*) # version"
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml
+      replacement: "nextKubernetesVersion: \"{{ context.version }}\" # version"
   scmConnectionRef:
     name: plural
   title: Tainting {{ context.fleet }} {{ context.drain }} nodes and flipping active to {{ context.active }}

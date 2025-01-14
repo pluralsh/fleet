@@ -11,6 +11,7 @@ spec:
     kubernetesVersion: "1.28" # version
     drain: green # drain
     active: blue # active
+    nextKubernetesVersion: "1.28" # version
   repositoryRef:
     kind: GitRepository
     name: fleet

@@ -13,20 +13,23 @@ variable "kubernetes_version" {
   default = "1.28" # dev version
 }
 
+variable "next_kubernetes_version" {
+  type = string
+  default = "1.28" # dev version
+}
+
 variable "node_pools" {
-  type = list(any)
-  default = [ 
-    {
-      name = "blue",
-      min_count = 0,
-      max_count = 10
-    },
-    {
-      name = "green",
+  type = map(any)
+  default = {
+    blue = {
       min_count = 0,
       max_count = 10
     }
-  ]
+    green = {
+      min_count = 0,
+      max_count = 10
+    }
+  }
 }
 
 variable "active_node_group" {

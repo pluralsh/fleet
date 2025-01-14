@@ -1,3 +1,12 @@
+locals {
+  node_pool_add = {
+    var.active_node_group = {version = var.kubernetes_version},
+    var.drain_node_group = {version = var.next_kubernetes_version}
+  }
+
+  full_node_pools = {for k, v in var.node_pools: k => merge(v, lookup(local.node_pool_add, k))}
+}
+
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google"
   version = "~> 29.0"
@@ -14,7 +23,7 @@ module "gke" {
   ip_range_services      = var.ip_range_services_name
   create_service_account = true
   deletion_protection    = false
-  node_pools             = var.node_pools
+  node_pools             = [for k, v in local.full_node_pools: merge(v, {name = k})]
   node_pools_taints      = merge(var.node_pools_taints, {
     var.active_node_group = [],
     var.drain_node_group = [{key = "platform.plural.sh/pending", value="upgrade", effect="NoSchedule"}]
