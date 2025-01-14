@@ -22,3 +22,34 @@ spec:
   - name: version
     type: STRING
     documentation: The k8s version to use
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-taint-pra
+spec:
+  name: fleet-taint-pra
+  documentation: Updates the k8s version of a given stage of cluster for a fleet
+  updates:
+    regexReplacements:
+    - regex: "drain: (.*) # drain"
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      replacement: "drain: \"{{ context.drain }}\" # drain"
+    - regex: "active: (.*) # active"
+      file: bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name }}.yaml
+      replacement: "active: \"{{ context.active }}\" # active"
+  scmConnectionRef:
+    name: plural
+  title: Tainting {{ context.fleet }} {{ context.drain }} nodes and flipping active to {{ context.active }}
+  message: Tainting {{ context.fleet }} {{ context.drain }} nodes and flipping active to {{ context.active }}
+  identifier: pluralsh/fleet
+  configuration:
+  - name: fleet
+    type: STRING
+    documentation: "the fleet to update"
+  - name: active
+    type: STRING
+    documentation: The node group to make active now
+  - name: drain
+    type: STRING
+    documentation: The node group to drain

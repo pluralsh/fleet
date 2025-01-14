@@ -15,7 +15,10 @@ module "gke" {
   create_service_account = true
   deletion_protection    = false
   node_pools             = var.node_pools
-  node_pools_taints      = var.node_pools_taints
+  node_pools_taints      = merge(var.node_pools_taints, {
+    var.active_node_group = [],
+    var.drain_node_group = [{key = "platform.plural.sh/pending", value="upgrade", effect="NoSchedule"}]
+  })
   node_pools_labels      = var.node_pools_labels
   node_pools_tags        = var.node_pools_tags
 

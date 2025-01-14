@@ -4,7 +4,16 @@ metadata:
   name: {{ context.fleetName }}-fleet-upgrade
 spec:
   stages:
-    - name: dev
+    - name: dev-taint
+      services:
+        - serviceRef:
+            name: clusters-{{ context.fleetName }}-dev
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: fleet-taint-pra
+              namespace: fleets
+    - name: dev-upgrade
       services:
         - serviceRef:
             name: clusters-{{ context.fleetName }}-dev
@@ -13,7 +22,16 @@ spec:
             prAutomationRef:
               name: fleet-upgrade-pra
               namespace: fleets
-    - name: prod
+    - name: dev-taint
+      services:
+        - serviceRef:
+            name: clusters-{{ context.fleetName }}-prod
+            namespace: fleets
+          criteria:
+            prAutomationRef:
+              name: fleet-taint-pra
+              namespace: fleets
+    - name: prod-upgrade
       services:
         - serviceRef:
             name: clusters-{{ context.fleetName }}-prod
@@ -23,8 +41,18 @@ spec:
               name: fleet-upgrade-pra
               namespace: fleets
   edges:
-    - from: dev
-      to: prod
+    - from: dev-taint
+      to: dev-upgrade
+      gates:
+      - name: approval-gate
+        type: APPROVAL
+    - from: dev-upgrade
+      to: prod-taint
+      gates:
+      - name: approval-gate
+        type: APPROVAL
+    - from: prod-taint
+      to: prod-upgrade
       gates:
       - name: approval-gate
         type: APPROVAL

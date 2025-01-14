@@ -15,7 +15,28 @@ variable "kubernetes_version" {
 
 variable "node_pools" {
   type = list(any)
-  default = [ {name = "new-node-pool"} ]
+  default = [ 
+    {
+      name = "blue",
+      min_count = 0,
+      max_count = 10
+    },
+    {
+      name = "green",
+      min_count = 0,
+      max_count = 10
+    }
+  ]
+}
+
+variable "active_node_group" {
+  type = string
+  default = "blue"
+}
+
+variable "drain_node_group" {
+  type = string
+  default = "blue"
 }
 
 variable "node_pools_taints" {
@@ -25,7 +46,12 @@ variable "node_pools_taints" {
 
 variable "node_pools_labels" {
   type = map(map(string))
-  default = { "all": {}, "default-node-pool": {} }
+  default = { 
+    "all": {}, 
+    "default-node-pool": {}, 
+    "blue": {"platform.plural.sh/bg": "blue"},
+    "green": {"platform.plural.sh/bg": "green"},
+  }
 }
 
 variable "node_pools_tags" {
