@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: gke-fleet-dev-01
+spec:
+  handle: gke-fleet-dev-01
+  tags:
+    tier: dev
+    fleet: gke-fleet
