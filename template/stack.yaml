@@ -1,0 +1,39 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: {{ context.fleetName }}-{{ context.clusterName }}
+spec:
+  name: {{ context.fleetName }}-{{ context.clusterName }}
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: {{ context.fleetName }}-sa@plural.sh
+  projectRef:
+    name: {{ context.fleetName }}
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  git:
+    ref: main
+    folder: terraform/{{ context.distro }}-cluster
+  files:
+  - mountPath: /plural
+    secretRef:
+      name: gcp-creds
+  variables:
+    kubernetes_version: {% raw %}"{{ configuration.kubernetesVersion }}"{% endraw %}
+    drain_node_group: {% raw %}"{{ configuration.drain }}"{% endraw %}
+    active_node_group: {% raw %}"{{ configuration.active }}"{% endraw %}
+    next_kubernetes_version: {% raw %}"{{ configuration.nextKubernetesVersion }}"{% endraw %}
+    cluster: {{ context.clusterName }}
+    tier: {{ context.tier }}
+    fleet: {{ context.fleetName }}
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: /plural/creds.json

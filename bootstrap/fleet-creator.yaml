@@ -80,7 +80,7 @@ spec:
     - source: template/cluster.yaml
       destination: "fleets/{{ context.fleetName }}/clusters/{{ context.clusterName }}.yaml"
       external: false
-    - source: template/stacks/{{ context.tier }}.yaml
+    - source: template/stack.yaml
       destination: fleets/clusters/{{ context.fleetName }}/{{ context.tier }}/{{ context.clusterName  }}.yaml.liquid
       external: false
   scmConnectionRef:
