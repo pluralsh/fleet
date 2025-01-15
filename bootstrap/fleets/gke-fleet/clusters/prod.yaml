@@ -8,7 +8,7 @@ spec:
     folder: fleets/clusters/gke-fleet/prod
     ref: main
   configuration:
-    kubernetesVersion: "1.28" # version
+    kubernetesVersion: "1.29" # version
     drain: "blue" # drain
     active: "green" # active
     nextKubernetesVersion: "1.29" # version
