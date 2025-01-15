@@ -6,8 +6,9 @@ spec:
   name: fleet-creator
   catalogRef:
     name: fleet
+  icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
   documentation: |
-    Sets up a PR to provision the global services for a new fleet definition.
+    Sets up a PR to provision the a compliant set of clusters for a new fleet.
   creates:
     templates:
     - source: template/setup.yaml
@@ -62,3 +63,89 @@ spec:
   - name: prodCluster
     type: STRING
     documentation: The name of an initial prod cluster
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-cluster-creator
+spec:
+  name: fleet-cluster-creator
+  catalogRef:
+    name: fleet
+  icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+  documentation: |
+    Sets up a PR to provision a new cluster within a fleet
+  creates:
+    templates:
+    - source: template/cluster.yaml
+      destination: "fleets/{{ context.fleetName }}/clusters/{{ context.clusterName }}.yaml"
+      external: false
+    - source: template/stacks/{{ context.tier }}.yaml
+      destination: fleets/clusters/{{ context.fleetName }}/{{ context.tier }}/{{ context.clusterName  }}.yaml.liquid
+      external: false
+  scmConnectionRef:
+    name: plural
+  title: "Adding cluster {{ context.clusterName }} to {{ context.fleetName }}"
+  message: "Adding cluster {{ context.clusterName }} to {{ context.fleetName }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: distro
+    type: ENUM
+    documentation: the k8s distro to use
+    values:
+    - lke
+    - gke
+    - eks
+  - name: fleetName
+    type: STRING
+    documentation: The name of this fleet
+  - name: clusterName
+    type: STRING
+    documentation: The name of an initial dev cluster
+  - name: tier
+    type: ENUM
+    documentation: The tier of this cluster
+    values:
+    - dev
+    - prod
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-cluster-deleter
+spec:
+  name: fleet-cluster-deleter
+  catalogRef:
+    name: fleet
+  icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+  documentation: |
+    Sets up a PR to delete a cluster within a fleet
+  deletes:
+    files:
+    - "fleets/{{ context.fleetName }}/clusters/{{ context.clusterName }}.yaml"
+    - "fleets/clusters/{{ context.fleetName }}/{{ context.tier }}/{{ context.clusterName  }}.yaml.liquid"
+  scmConnectionRef:
+    name: plural
+  title: "Deleting cluster {{ context.clusterName }} from {{ context.fleetName }}"
+  message: "Deleting cluster {{ context.clusterName }} from {{ context.fleetName }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: distro
+    type: ENUM
+    documentation: the k8s distro to use
+    values:
+    - lke
+    - gke
+    - eks
+  - name: fleetName
+    type: STRING
+    documentation: The name of this fleet
+  - name: clusterName
+    type: STRING
+    documentation: The name of an initial dev cluster
+  - name: tier
+    type: ENUM
+    documentation: The tier of this cluster
+    values:
+    - dev
+    - prod
