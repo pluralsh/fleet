@@ -97,7 +97,7 @@ spec:
     - gke
     - eks
   - name: fleetName
-    type: STRING
+    type: PROJECT
     documentation: The name of this fleet
   - name: clusterName
     type: STRING
@@ -138,7 +138,7 @@ spec:
     - gke
     - eks
   - name: fleetName
-    type: STRING
+    type: PROJECT
     documentation: The name of this fleet
   - name: clusterName
     type: STRING

@@ -21,7 +21,7 @@ spec:
   identifier: pluralsh/fleet
   configuration:
   - name: fleet
-    type: STRING
+    type: PROJECT
     documentation: The name of this fleet
   - name: version
     type: STRING
