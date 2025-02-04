@@ -10,12 +10,12 @@ variable "enable_stacks" {
 
 variable "kubernetes_version" {
   type = string
-  default = "1.28" # dev version
+  default = "1.29" # dev version
 }
 
 variable "next_kubernetes_version" {
   type = string
-  default = "1.28" # dev version
+  default = "1.29" # dev version
 }
 
 variable "node_pools" {
