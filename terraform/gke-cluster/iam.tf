@@ -8,8 +8,6 @@ module "console-workload-identity" {
   annotate_k8s_sa     = false
   k8s_sa_name         = "stacks"
   roles               = ["roles/owner", "roles/storage.admin"]
-
-  depends_on = [ kubernetes_namespace.plural ]
 }
 
 module "externaldns_workload_identity" {
