@@ -18,6 +18,13 @@ resource "plural_cluster" "this" {
 
     project_id = data.plural_project.fleet.id
 
+    metadata = jsonencode({
+      dns_zone = "gcp.plural.sh"
+      iam = {
+        external_dns = module.externaldns_workload_identity.gcp_service_account_email
+      }
+    })
+
     kubeconfig = {
       host = "https://${module.gke.endpoint}"
       cluster_ca_certificate = base64decode(module.gke.ca_certificate)
