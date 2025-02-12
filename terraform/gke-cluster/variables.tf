@@ -23,11 +23,13 @@ variable "node_pools" {
   default = {
     blue = {
       min_count = 0,
-      max_count = 10
+      max_count = 10,
+      machine_type = "e2-standard-2"
     }
     green = {
       min_count = 0,
-      max_count = 10
+      max_count = 10,
+      machine_type = "e2-standard-2"
     }
   }
 }
