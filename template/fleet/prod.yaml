@@ -8,10 +8,10 @@ spec:
     folder: fleets/clusters/{{ context.fleetName }}/prod
     ref: main
   configuration:
-    kubernetesVersion: "1.29" # version
+    kubernetesVersion: "1.30" # version
     drain: green # drain
     active: blue # active
-    nextKubernetesVersion: "1.29" # version
+    nextKubernetesVersion: "1.30" # version
   repositoryRef:
     kind: GitRepository
     name: fleet
