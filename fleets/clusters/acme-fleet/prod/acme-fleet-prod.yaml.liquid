@@ -1,0 +1,39 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: acme-fleet-cluster-prod
+spec:
+  name: acme-fleet-cluster-prod
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: acme-fleet-sa@plural.sh
+  projectRef:
+    name: acme-fleet
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  git:
+    ref: main
+    folder: terraform/gke-cluster
+  files:
+  - mountPath: /plural
+    secretRef:
+      name: gcp-creds
+  variables:
+    kubernetes_version: "{{ configuration.kubernetesVersion }}"
+    drain_node_group: "{{ configuration.drain }}"
+    active_node_group: "{{ configuration.active }}"
+    next_kubernetes_version: "{{ configuration.nextKubernetesVersion }}"
+    cluster: acme-fleet-prod
+    tier: prod
+    fleet: acme-fleet
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: /plural/creds.json
