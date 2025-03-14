@@ -9,5 +9,5 @@ spec:
   context:
     fleet: gke-fleet
     version: '1.31'
-    active: blue
-    drain: green
+    active: green
+    drain: blue
