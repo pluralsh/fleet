@@ -1,7 +1,7 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: ClusterDrain
 metadata:
-  name: drain-{{ configuration.version }}
+  {% raw %}name: drain-{{ configuration.version }}{% endraw %}
 spec:
   flowControl:
     maxConcurrency: 10
