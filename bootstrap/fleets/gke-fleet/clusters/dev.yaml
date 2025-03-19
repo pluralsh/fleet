@@ -9,9 +9,9 @@ spec:
     ref: main
   configuration:
     kubernetesVersion: "1.30" # version
-    drain: green # drain
-    active: blue # active
-    nextKubernetesVersion: "1.30" # version
+    drain: "green" # drain
+    active: "blue" # active
+    nextKubernetesVersion: "1.31" # version
   repositoryRef:
     kind: GitRepository
     name: fleet
