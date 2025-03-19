@@ -33,7 +33,7 @@ spec:
   creates:
     templates:
     - source: template/drainer.yaml
-      destination: fleets/clusters/{{ context.fleet }}/{{ context.pipeline.stage.name }}/drainer.yaml
+      destination: "fleets/clusters/{{ context.fleet }}/{{ context.pipeline.stage.name | split: '-' | first  }}/drainer.yaml"
       external: false
   updates:
     regexReplacements:
