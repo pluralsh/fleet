@@ -1,0 +1,12 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ClusterDrain
+metadata:
+  
+  name: drain-{{ configuration.version }}
+  
+spec:
+  flowControl:
+    maxConcurrency: 10
+  labelSelector:
+    matchLabels:
+      platform.plural.sh/drainable: "true"
