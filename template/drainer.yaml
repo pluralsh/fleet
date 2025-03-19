@@ -1,12 +1,12 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: GlobalService
 metadata:
-  name: {{ context.fleet }}-{{ context.pipeline.stage.name }}-drainer
+  name: {{ context.fleet }}-{{ context.pipeline.stage.name | split: '-' | first  }}-drainer
 spec:
   projectRef:
     name: {{ context.fleet }}
   tags:
-    tier: {{ context.pipeline.stage.name }}
+    tier: {{ context.pipeline.stage.name | split: '-' | first  }}
   template:
     name: drainer
     namespace: plrl-deploy-operator
