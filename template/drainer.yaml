@@ -14,7 +14,7 @@ spec:
       folder: services/drainer
       ref: main
     configuration:
-      version: {{ context.version }}
+      version: "{{ context.version }}"
     repositoryRef:
       kind: GitRepository
       name: fleet
