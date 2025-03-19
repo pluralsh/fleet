@@ -14,9 +14,6 @@ spec:
     - source: template/context.yaml
       destination: "bootstrap/fleets/{{ context.fleet }}/context.yaml"
       external: false
-    - source: template/drain
-      destination: services/drainer
-      external: false
   scmConnectionRef:
     name: plural
   title: "Upgrading fleet {{ context.fleet }} to {{ context.version }}"

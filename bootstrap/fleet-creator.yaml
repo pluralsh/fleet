@@ -23,6 +23,19 @@ spec:
     - source: template/stacks/dev.yaml
       destination: fleets/clusters/{{ context.fleetName }}/dev/{{ context.devCluster }}.yaml.liquid
       external: false
+    - source: template/drain
+      destination: services/drainer
+      external: false
+    - source: template/drainer.yaml
+      destination: fleets/clusters/{{ context.fleetName }}/dev/drainer.yaml
+      external: false
+      context:
+        tier: dev
+    - source: template/drainer.yaml
+      destination: fleets/clusters/{{ context.fleetName }}/prod/drainer.yaml
+      external: false
+      context:
+        tier: prod
     - source: template/stacks/prod.yaml
       destination: fleets/clusters/{{ context.fleetName }}/prod/{{ context.prodCluster }}.yaml.liquid
       external: false

@@ -19,6 +19,7 @@ resource "plural_cluster" "this" {
     project_id = data.plural_project.fleet.id
 
     metadata = jsonencode({
+      master_version = module.gke.cluster.kubernetes_version
       dns_zone = "gcp.plural.sh"
       iam = {
         external_dns = module.externaldns_workload_identity.gcp_service_account_email

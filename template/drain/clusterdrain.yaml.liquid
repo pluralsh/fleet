@@ -2,7 +2,7 @@ apiVersion: deployments.plural.sh/v1alpha1
 kind: ClusterDrain
 metadata:
   {% raw %}
-  name: drain-{{ configuration.version }}
+  name: drain-{{ cluster.metadata.master_version }}
   {% endraw %}
 spec:
   flowControl:

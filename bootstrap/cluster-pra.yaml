@@ -26,15 +26,10 @@ spec:
 apiVersion: deployments.plural.sh/v1alpha1
 kind: PrAutomation
 metadata:
-  name: fleet-taint-pra
+  name: fleet-taint-pr
 spec:
-  name: fleet-taint-pra
+  name: fleet-taint-pr
   documentation: Updates the k8s version of a given stage of cluster for a fleet
-  creates:
-    templates:
-    - source: template/drainer.yaml
-      destination: "fleets/clusters/{{ context.fleet }}/{{ context.pipeline.stage.name | split: '-' | first  }}/drainer.yaml"
-      external: false
   updates:
     regexReplacements:
     - regex: "drain: (.*) # drain"
