@@ -1,0 +1,21 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: {{ context.fleet }}-{{ context.pipeline.stage.name }}-drainer
+spec:
+  projectRef:
+    name: {{ context.fleet }}
+  tags:
+    tier: {{ context.pipeline.stage.name }}
+  template:
+    name: drainer
+    namespace: plrl-deploy-operator
+    git:
+      folder: services/drainer
+      ref: main
+    configuration:
+      version: {{ context.version }}
+    repositoryRef:
+      kind: GitRepository
+      name: fleet
+      namespace: fleets

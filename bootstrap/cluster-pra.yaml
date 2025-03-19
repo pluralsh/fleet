@@ -30,6 +30,11 @@ metadata:
 spec:
   name: fleet-taint-pra
   documentation: Updates the k8s version of a given stage of cluster for a fleet
+  creates:
+    templates:
+    - source: template/drainer.yaml
+      destination: fleets/clusters/{{ context.fleet }}/{{ context.pipeline.stage.name }}/drainer.yaml
+      external: false
   updates:
     regexReplacements:
     - regex: "drain: (.*) # drain"
@@ -50,6 +55,9 @@ spec:
   - name: fleet
     type: STRING
     documentation: "the fleet to update"
+  - name: version
+    type: STRING
+    documentation: The k8s version to use
   - name: active
     type: STRING
     documentation: The node group to make active now
