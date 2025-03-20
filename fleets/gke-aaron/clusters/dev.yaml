@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gke-aaron-dev
-spec:
-  handle: gke-aaron-dev
-  tags:
-    tier: dev
-    fleet: gke-aaron
