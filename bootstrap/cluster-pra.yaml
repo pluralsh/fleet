@@ -32,12 +32,6 @@ spec:
   documentation: Updates the k8s version of a given stage of cluster for a fleet
   updates:
     regexReplacements:
-    - regex: "drain: (.*) # drain"
-      file: "bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml"
-      replacement: "drain: \"{{ context.drain }}\" # drain"
-    - regex: "active: (.*) # active"
-      file: "bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml"
-      replacement: "active: \"{{ context.active }}\" # active"
     - regex: "nextKubernetesVersion: (.*) # version"
       file: "bootstrap/fleets/{{ context.fleet }}/clusters/{{ context.pipeline.stage.name | split: '-' | first }}.yaml"
       replacement: "nextKubernetesVersion: \"{{ context.version }}\" # version"
@@ -53,9 +47,3 @@ spec:
   - name: version
     type: STRING
     documentation: The k8s version to use
-  - name: active
-    type: STRING
-    documentation: The node group to make active now
-  - name: drain
-    type: STRING
-    documentation: The node group to drain

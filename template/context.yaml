@@ -9,5 +9,3 @@ spec:
   context:
     fleet: {{ context.fleet }}
     version: '{{ context.version }}'
-    active: {{ context.active }}
-    drain: {{ context.drain }}

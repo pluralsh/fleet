@@ -1,7 +1,7 @@
 locals {
   node_pool_add = {
-    (var.active_node_group) = {version = var.next_kubernetes_version, auto_upgrade = false, min_count = 2},
-    (var.drain_node_group) = {version = var.kubernetes_version, auto_upgrade = false}
+    (local.active_node_group) = {version = var.next_kubernetes_version, auto_upgrade = false, min_count = 2},
+    (local.drain_node_group) = {version = var.kubernetes_version, auto_upgrade = false}
   }
 
   full_node_pools = {for k, v in var.node_pools: k => merge(v, lookup(local.node_pool_add, k))}
@@ -25,8 +25,8 @@ module "gke" {
   deletion_protection    = false
   node_pools             = [for k, v in local.full_node_pools: merge(v, {name = k})]
   node_pools_taints      = merge(var.node_pools_taints, {
-    (var.active_node_group) = [],
-    (var.drain_node_group) = [{key = "platform.plural.sh/pending", value="upgrade", effect="NO_SCHEDULE"}]
+    (local.active_node_group) = [],
+    (local.drain_node_group) = [{key = "platform.plural.sh/pending", value="upgrade", effect="NO_SCHEDULE"}]
   })
   node_pools_labels      = var.node_pools_labels
   node_pools_tags        = var.node_pools_tags

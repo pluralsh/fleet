@@ -28,15 +28,3 @@ spec:
     documentation: The kubernetes version to upgrade to
     validation:
       regex: "1.(2|3)[0-9]"
-  - name: active
-    type: ENUM
-    documentation: The node group for workloads to migrate to
-    values:
-    - blue
-    - green
-  - name: drain
-    type: ENUM
-    documentation: The node group for workloads to migrate from
-    values:
-    - blue
-    - green
