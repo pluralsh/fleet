@@ -19,7 +19,7 @@ resource "plural_cluster" "this" {
     project_id = data.plural_project.fleet.id
 
     metadata = jsonencode({
-      master_version = module.gke.cluster.kubernetes_version
+      master_version = module.gke.cluster_master_version
       dns_zone = "gcp.plural.sh"
       iam = {
         external_dns = module.externaldns_workload_identity.gcp_service_account_email
@@ -32,5 +32,9 @@ resource "plural_cluster" "this" {
       token = data.google_client_config.default.access_token
     }
 
-    depends_on = [ module.gcp-network, time_sleep.wait_30_seconds ]
+    depends_on = [ 
+      module.gcp-network, 
+      time_sleep.wait_30_seconds, 
+      module.gke.node_pools_versions 
+    ]
 }
