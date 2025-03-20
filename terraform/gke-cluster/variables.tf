@@ -34,16 +34,6 @@ variable "node_pools" {
   }
 }
 
-variable "active_node_group" {
-  type = string
-  default = "blue"
-}
-
-variable "drain_node_group" {
-  type = string
-  default = "blue"
-}
-
 variable "node_pools_taints" {
   type = map(list(object({ key = string, value = string, effect = string })))
   default = { "all": [], "default-node-pool": [] }

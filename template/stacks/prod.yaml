@@ -28,8 +28,6 @@ spec:
       name: gcp-creds
   variables:
     kubernetes_version: {% raw %}"{{ configuration.kubernetesVersion }}"{% endraw %}
-    drain_node_group: {% raw %}"{{ configuration.drain }}"{% endraw %}
-    active_node_group: {% raw %}"{{ configuration.active }}"{% endraw %}
     next_kubernetes_version: {% raw %}"{{ configuration.nextKubernetesVersion }}"{% endraw %}
     cluster: {{ context.prodCluster }}
     tier: prod
