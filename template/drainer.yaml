@@ -1,10 +1,10 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: GlobalService
 metadata:
-  name: {{ context.fleet }}-{{ context.tier  }}-drainer
+  name: {{ context.fleetName }}-{{ context.tier  }}-drainer
 spec:
   projectRef:
-    name: {{ context.fleet }}
+    name: {{ context.fleetName }}
   tags:
     tier: {{ context.tier }}
   template:
@@ -13,8 +13,6 @@ spec:
     git:
       folder: services/drainer
       ref: main
-    configuration:
-      version: "{{ context.version }}"
     repositoryRef:
       kind: GitRepository
       name: fleet
