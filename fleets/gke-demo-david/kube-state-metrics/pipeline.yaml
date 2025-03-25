@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: gke-demo-david-kube-state-metrics
+spec:
+  projectRef:
+    name: gke-demo-david
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: kube-state-metrics-dev
+            namespace: gke-demo-david
+          criteria:
+            prAutomationRef:
+              name: gke-demo-david-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: kube-state-metrics-prod
+            namespace: gke-demo-david
+          criteria:
+            prAutomationRef:
+              name: gke-demo-david-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
