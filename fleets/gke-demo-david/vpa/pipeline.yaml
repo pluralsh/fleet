@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: gke-demo-david-vpa
+spec:
+  projectRef:
+    name: gke-demo-david
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: gke-demo-david
+          criteria:
+            prAutomationRef:
+              name: gke-demo-david-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: gke-demo-david
+          criteria:
+            prAutomationRef:
+              name: gke-demo-david-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
