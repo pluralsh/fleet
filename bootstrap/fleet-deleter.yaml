@@ -1,0 +1,26 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PrAutomation
+metadata:
+  name: fleet-deleter
+spec:
+  name: fleet-deleter
+  catalogRef:
+    name: fleet
+  icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+  documentation: Creates a PR to delete the setup for a fleet
+  deletes:
+    files:
+    - 'bootstrap/projects/{{ context.fleet }}.yaml'
+    folders:
+    - 'bootstrap/fleets/{{ context.fleet }}'
+    - 'fleets/{{ context.fleet }}'
+    - 'fleets/clusters/{{ context.fleet }}'
+  scmConnectionRef:
+    name: plural
+  title: "Deleting fleet {{ context.fleet }}"
+  message: "Deleting fleet {{ context.fleet }}"
+  identifier: pluralsh/fleet
+  configuration:
+  - name: fleet
+    type: PROJECT
+    documentation: The name of this fleet
