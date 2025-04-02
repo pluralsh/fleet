@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: kubecon-demo-vpa
+spec:
+  projectRef:
+    name: kubecon-demo
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: kubecon-demo
+          criteria:
+            prAutomationRef:
+              name: kubecon-demo-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: kubecon-demo
+          criteria:
+            prAutomationRef:
+              name: kubecon-demo-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL

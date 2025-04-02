@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubecon-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: kubecon-demo
+spec:
+  email: kubecon-demo-sa@plural.sh
+  tokenSecretRef:
+    name: kubecon-demo-sa-token
+    namespace: kubecon-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: kubecon-demo
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/kubecon-demo
+spec:
+  name: kubecon-demo
+  description: Resources for managing the kubecon-demo fleet
+  bindings:
+    write:
+    - userEmail: kubecon-demo-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: kubecon-demo
+spec:
+  namespaces:
+  - kubecon-demo
+  secretRef:
+    name: kubecon-demo-sa-token
+    namespace: kubecon-demo
