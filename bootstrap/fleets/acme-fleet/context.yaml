@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: acme-fleet-pipeline-context
+spec:
+  pipelineRef:
+    name: acme-fleet-fleet-upgrade
+    namespace: fleets
+  context:
+    fleet: acme-fleet
+    version: '1,31'
