@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: richaedev
+spec:
+  handle: richaedev
+  tags:
+    tier: dev
+    fleet: richardtest
