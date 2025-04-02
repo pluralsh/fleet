@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: testprod
+spec:
+  handle: testprod
+  tags:
+    tier: prod
+    fleet: testtest

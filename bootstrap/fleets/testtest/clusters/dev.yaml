@@ -1,0 +1,20 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: clusters-testtest-dev
+spec:
+  namespace: fleets
+  git:
+    folder: fleets/clusters/testtest/dev
+    ref: main
+  configuration:
+    kubernetesVersion: "1.30" # version
+    nextKubernetesVersion: "1.30" # version
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
