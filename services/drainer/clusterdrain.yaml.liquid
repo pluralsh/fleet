@@ -5,8 +5,10 @@ metadata:
   name: drain-{{ cluster.metadata.master_version }}
   
 spec:
-  flowControl:
-    maxConcurrency: 10
-  labelSelector:
-    matchLabels:
-      platform.plural.sh/drainable: "true"
+  flowControl: 
+    maxConcurrency: 10 # at most 10 deployments/statefulsets/daemonsets can be restarted at the same time
+  # can also add a `platform.plural.sh/drain-wave: "n"` annotation
+  # to configure the order at which each resource is restarted
+  labelSelector: 
+    matchLabels:  
+      platform.plural.sh/drainable: "true" # the resources that should be restarted
