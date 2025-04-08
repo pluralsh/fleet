@@ -12,8 +12,8 @@ spec:
       replacement: "kubernetesVersion: \"{{ context.version }}\" # version"
   scmConnectionRef:
     name: plural
-  title: "Updating {{ context.fleet }} {{ context.pipeline.stage.name | split: '-' | first }} clusters to {{ context.version }}"
-  message: "Updating {{ context.fleet }} {{ context.pipeline.stage.name | split: '-' | first }} clusters to {{ context.version }}"
+  title: "Fully Updating {{ context.fleet }} {{ context.pipeline.stage.name | split: '-' | first }} clusters to {{ context.version }}"
+  message: "Fully Updating {{ context.fleet }} {{ context.pipeline.stage.name | split: '-' | first }} clusters to {{ context.version }}"
   identifier: pluralsh/fleet
   configuration:
   - name: fleet
@@ -37,8 +37,8 @@ spec:
       replacement: "nextKubernetesVersion: \"{{ context.version }}\" # version"
   scmConnectionRef:
     name: plural
-  title: Tainting {{ context.fleet }} {{ context.drain }} nodes and flipping active to {{ context.active }}
-  message: Tainting {{ context.fleet }} {{ context.drain }} nodes and flipping active to {{ context.active }}
+  title: Updating master plane and flipping node group to {{ context.version }}
+  message: Updating master plane and flipping node group to {{ context.version }}
   identifier: pluralsh/fleet
   configuration:
   - name: fleet
