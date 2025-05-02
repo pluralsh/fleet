@@ -1,7 +1,7 @@
 locals {
   node_pool_add = {
     (local.active_node_group) = {version = var.next_kubernetes_version, auto_upgrade = false, min_count = 2},
-    (local.drain_node_group) = {version = var.kubernetes_version, auto_upgrade = false}
+    (local.drain_node_group) = {version = var.kubernetes_version, auto_upgrade = false, min_count = 0}
   }
 
   full_node_pools = {for k, v in var.node_pools: k => merge(v, lookup(local.node_pool_add, k))}
