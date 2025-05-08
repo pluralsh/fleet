@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: john-test
+spec:
+  handle: john-test
+  tags:
+    tier: dev
+    fleet: default
