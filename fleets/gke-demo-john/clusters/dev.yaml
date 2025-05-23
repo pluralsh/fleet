@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: gke-demo-john-dev
+spec:
+  handle: gke-demo-john-dev
+  tags:
+    tier: dev
+    fleet: gke-demo-john
