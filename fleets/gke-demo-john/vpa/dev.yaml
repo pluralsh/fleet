@@ -1,0 +1,35 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: vpa-dev
+spec:
+  name: vpa
+  namespace: vpa
+  helm:
+    chart: vpa
+    version: 4.4.5 # VERSION
+    values:
+      admissionController:
+        enabled: false
+    repository:
+      name: fairwinds
+      namespace: infra
+  clusterRef:
+    kind: Cluster
+    name: gke-demo-john-dev
+    namespace: gke-demo-john
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: vpa-dev-gke-demo-john
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: vpa-dev
+    namespace: gke-demo-john
+  projectRef:
+    name: gke-demo-john
+  tags:
+    tier: dev
