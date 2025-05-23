@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: john-cluster-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: john-cluster-demo
+spec:
+  email: john-cluster-demo-sa@plural.sh
+  tokenSecretRef:
+    name: john-cluster-demo-sa-token
+    namespace: john-cluster-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: john-cluster-demo
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/john-cluster-demo
+spec:
+  name: john-cluster-demo
+  description: Resources for managing the john-cluster-demo fleet
+  bindings:
+    write:
+    - userEmail: john-cluster-demo-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: john-cluster-demo
+spec:
+  namespaces:
+  - john-cluster-demo
+  secretRef:
+    name: john-cluster-demo-sa-token
+    namespace: john-cluster-demo
