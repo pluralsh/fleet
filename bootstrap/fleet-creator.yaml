@@ -70,6 +70,8 @@ spec:
   - name: fleetName
     type: STRING
     documentation: The name of this fleet
+    validation:
+      regex: ^[a-z]([-a-z0-9]*[a-z0-9])?$
   - name: devCluster
     type: STRING
     documentation: The name of an initial dev cluster
