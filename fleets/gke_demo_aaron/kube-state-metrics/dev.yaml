@@ -1,0 +1,32 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: kube-state-metrics-dev
+spec:
+  name: kube-state-metrics
+  namespace: kube-state-metrics
+  helm:
+    chart: kube-state-metrics
+    version: 5.19.0 # VERSION
+    repository:
+      name: prometheus
+      namespace: infra
+  clusterRef:
+    kind: Cluster
+    name: gke_demo_aaron_dev
+    namespace: gke_demo_aaron
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: kube-state-metrics-dev-gke_demo_aaron
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: kube-state-metrics-dev
+    namespace: gke_demo_aaron
+  projectRef:
+    name: gke_demo_aaron
+  tags:
+    tier: dev

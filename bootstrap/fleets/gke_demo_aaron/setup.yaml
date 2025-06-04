@@ -1,0 +1,17 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: gke_demo_aaron
+spec:
+  namespace: gke_demo_aaron
+  git:
+    folder: fleets/gke_demo_aaron
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
