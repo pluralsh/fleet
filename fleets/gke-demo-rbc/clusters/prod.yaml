@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gke-demo-rbc-prod
-spec:
-  handle: gke-demo-rbc-prod
-  tags:
-    tier: prod
-    fleet: gke-demo-rbc
