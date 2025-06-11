@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: argo-rollouts
+spec:
+  pipelineRef:
+    name: gke-demo-argo-rollouts
+    namespace: gke-demo
+  context:
+    component: argo-rollouts
+    version: 2.35.2
