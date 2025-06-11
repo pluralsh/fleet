@@ -9,7 +9,7 @@ spec:
     ref: main
   configuration:
     kubernetesVersion: "1.30" # version
-    nextKubernetesVersion: "1.31" # version
+    nextKubernetesVersion: "1.32" # version
   repositoryRef:
     kind: GitRepository
     name: fleet
