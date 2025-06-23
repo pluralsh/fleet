@@ -6,7 +6,7 @@ spec:
   name: fleet-upgrade
   catalogRef:
     name: fleet
-  icon: https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png
+  icon: https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg
   documentation: |
     Triggers a pipelined upgrade to a fleet to a target k8s version
   creates:
