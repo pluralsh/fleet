@@ -11,7 +11,7 @@ spec:
       file: fleets/gke-fleet/{{context.component }}/{{ context.pipeline.stage.name }}.yaml
       replacement: "version: {{ context.version }} # VERSION"
   scmConnectionRef:
-    name: pluralsh
+    name: plural
   title: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
   message: Updating {{ context.component }} {{ context.pipeline.stage.name }} helm version to {{ context.version }} (stage={{ context.pipeline.stage.name }})
   identifier: pluralsh/fleet
