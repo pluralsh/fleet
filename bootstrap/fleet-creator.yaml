@@ -64,8 +64,7 @@ spec:
     - {{ context.devCluster }}
     - {{ context.prodCluster }}
 
-    Plural Service: fleets
-    Plural Cluster: mgmt
+    Plural Service: mgmt/fleets
   identifier: pluralsh/fleet
   configuration:
   - name: distro
