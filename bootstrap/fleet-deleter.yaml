@@ -18,7 +18,13 @@ spec:
   scmConnectionRef:
     name: plural
   title: "Deleting fleet {{ context.fleet }}"
-  message: "Deleting fleet {{ context.fleet }}"
+  message: |
+    Deleting fleet {{ context.fleet }}
+
+    Also will bounce the below service to trigger immediate sync
+
+    Plural Service: fleets
+    Plural Cluster: mgmt
   identifier: pluralsh/fleet
   configuration:
   - name: fleet

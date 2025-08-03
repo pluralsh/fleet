@@ -57,7 +57,15 @@ spec:
   scmConnectionRef:
     name: plural
   title: "Adding fleet {{ context.fleetName }}"
-  message: "Adding fleet {{ context.fleetName }}"
+  message: |
+    Adding fleet {{ context.fleetName }}
+
+    This will create a new fleet with the following clusters:
+    - {{ context.devCluster }}
+    - {{ context.prodCluster }}
+
+    Plural Service: fleets
+    Plural Cluster: mgmt
   identifier: pluralsh/fleet
   configuration:
   - name: distro
