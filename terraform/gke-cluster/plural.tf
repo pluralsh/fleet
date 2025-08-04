@@ -20,6 +20,7 @@ resource "plural_cluster" "this" {
 
     metadata = jsonencode({
       master_version = var.next_kubernetes_version
+      project = var.project_id
       dns_zone = "gcp.plural.sh"
       iam = {
         external_dns = module.externaldns_workload_identity.gcp_service_account_email
