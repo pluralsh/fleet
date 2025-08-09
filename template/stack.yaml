@@ -3,6 +3,9 @@ kind: InfrastructureStack
 metadata:
   name: {{ context.fleetName }}-{{ context.clusterName }}
 spec:
+  {% if context.ai %}
+  agentId: {{ context.ai.session.agent_id }}
+  {% endif %}
   name: {{ context.fleetName }}-{{ context.clusterName }}
   type: TERRAFORM
   approval: true

@@ -3,6 +3,9 @@ kind: ServiceDeployment
 metadata:
   name: {{ context.fleetName }}
 spec:
+  {% if context.ai %}
+  agentId: {{ context.ai.session.agent_id }}
+  {% endif %}
   namespace: {{ context.fleetName }}
   git:
     folder: fleets/{{ context.fleetName }}

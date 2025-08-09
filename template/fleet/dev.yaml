@@ -3,6 +3,9 @@ kind: ServiceDeployment
 metadata:
   name: clusters-{{ context.fleetName }}-dev
 spec:
+  {% if context.ai %}
+  agentId: {{ context.ai.session.agent_id }}
+  {% endif %}
   namespace: fleets
   git:
     folder: fleets/clusters/{{ context.fleetName }}/dev
