@@ -108,7 +108,15 @@ spec:
   scmConnectionRef:
     name: plural
   title: "Adding cluster {{ context.clusterName }} to {{ context.fleetName }}"
-  message: "Adding cluster {{ context.clusterName }} to {{ context.fleetName }}"
+  message: |
+    Adding cluster {{ context.clusterName }} to {{ context.fleetName }}
+
+    This will create a new cluster with the following configuration:
+    - {{ context.distro }}
+    - {{ context.tier }}
+    - {{ context.clusterName }}
+
+    Plural Service: mgmt/clusters-{{ context.fleetName }}-{{ context.tier }}
   identifier: pluralsh/fleet
   configuration:
   - name: distro
@@ -149,7 +157,16 @@ spec:
   scmConnectionRef:
     name: plural
   title: "Deleting cluster {{ context.clusterName }} from {{ context.fleetName }}"
-  message: "Deleting cluster {{ context.clusterName }} from {{ context.fleetName }}"
+  message: |
+    Deleting cluster {{ context.clusterName }} from {{ context.fleetName }}
+
+    This will delete the cluster with the following configuration:
+    - {{ context.clusterName }}
+    - {{ context.distro }}
+    - {{ context.tier }}
+    - {{ context.clusterName }}
+
+    Plural Service: mgmt/clusters-{{ context.fleetName }}-{{ context.tier }}
   identifier: pluralsh/fleet
   configuration:
   - name: distro
