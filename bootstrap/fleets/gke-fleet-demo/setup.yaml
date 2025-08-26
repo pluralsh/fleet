@@ -1,0 +1,20 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: gke-fleet-demo
+spec:
+  
+  agentId: hcx20ubm8m970fij
+  
+  namespace: gke-fleet-demo
+  git:
+    folder: fleets/gke-fleet-demo
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
