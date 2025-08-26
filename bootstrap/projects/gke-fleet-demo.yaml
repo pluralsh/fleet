@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gke-fleet-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: gke-fleet-demo
+spec:
+  email: gke-fleet-demo-sa@plural.sh
+  tokenSecretRef:
+    name: gke-fleet-demo-sa-token
+    namespace: gke-fleet-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: gke-fleet-demo
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-fleet-demo
+spec:
+  name: gke-fleet-demo
+  description: Resources for managing the gke-fleet-demo fleet
+  bindings:
+    write:
+    - userEmail: gke-fleet-demo-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: gke-fleet-demo
+spec:
+  namespaces:
+  - gke-fleet-demo
+  secretRef:
+    name: gke-fleet-demo-sa-token
+    namespace: gke-fleet-demo
