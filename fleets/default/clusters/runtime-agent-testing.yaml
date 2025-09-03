@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: runtime-agent-testing
+spec:
+  handle: runtime-agent-testing
+  tags:
+    tier: dev
+    fleet: default
