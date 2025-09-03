@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: agent-runtime-cluster
-spec:
-  handle: agent-runtime-cluster
-  tags:
-    tier: dev
-    fleet: default
