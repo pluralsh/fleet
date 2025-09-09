@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: abishek-prod
+spec:
+  handle: abishek-prod
+  tags:
+    tier: prod
+    fleet: abishek

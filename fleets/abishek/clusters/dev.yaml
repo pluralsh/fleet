@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: abishek-dev
+spec:
+  handle: abishek-dev
+  tags:
+    tier: dev
+    fleet: abishek

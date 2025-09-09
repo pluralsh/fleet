@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: abishek
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: abishek
+spec:
+  email: abishek-sa@plural.sh
+  tokenSecretRef:
+    name: abishek-sa-token
+    namespace: abishek
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: abishek
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/abishek
+spec:
+  name: abishek
+  description: Resources for managing the abishek fleet
+  bindings:
+    write:
+    - userEmail: abishek-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: abishek
+spec:
+  namespaces:
+  - abishek
+  secretRef:
+    name: abishek-sa-token
+    namespace: abishek

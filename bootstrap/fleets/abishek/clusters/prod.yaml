@@ -1,0 +1,23 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: clusters-abishek-prod
+spec:
+  
+  agentId: 0buf82bagsj4ww7s
+  
+  namespace: fleets
+  git:
+    folder: fleets/clusters/abishek/prod
+    ref: main
+  configuration:
+    kubernetesVersion: "1.31" # version
+    nextKubernetesVersion: "1.31" # version
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
