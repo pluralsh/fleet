@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: another-demo-prod
-spec:
-  handle: another-demo-prod
-  tags:
-    tier: prod
-    fleet: another-demo
