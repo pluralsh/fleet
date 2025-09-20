@@ -20,7 +20,7 @@ spec:
             namespace: fleets
           criteria:
             prAutomationRef:
-              name: fleet-upgrade-pra
+              name: fleet-upgrader-pra
               namespace: fleets
     - name: prod-taint
       services:
@@ -38,7 +38,7 @@ spec:
             namespace: fleets
           criteria:
             prAutomationRef:
-              name: fleet-upgrade-pra
+              name: fleet-upgrader-pra
               namespace: fleets
   edges:
   - from: dev-taint

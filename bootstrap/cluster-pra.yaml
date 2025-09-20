@@ -1,9 +1,9 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: PrAutomation
 metadata:
-  name: fleet-upgrade-pra
+  name: fleet-upgrader-pra
 spec:
-  name: fleet-upgrade-pra
+  name: fleet-upgrader-pra
   documentation: Updates the k8s version of a given stage of cluster for a fleet
   updates:
     regexReplacements:

@@ -1,13 +1,13 @@
 apiVersion: deployments.plural.sh/v1alpha1
 kind: Pipeline
 metadata:
-  name: {{ context.fleetName }}-fleet-upgrade
+  name: gke-demo-fleet-upgrade
 spec:
   stages:
     - name: dev-taint
       services:
         - serviceRef:
-            name: clusters-{{ context.fleetName }}-dev
+            name: clusters-gke-demo-dev
             namespace: fleets
           criteria:
             prAutomationRef:
@@ -16,7 +16,7 @@ spec:
     - name: dev-upgrade
       services:
         - serviceRef:
-            name: clusters-{{ context.fleetName }}-dev
+            name: clusters-gke-demo-dev
             namespace: fleets
           criteria:
             prAutomationRef:
@@ -25,7 +25,7 @@ spec:
     - name: prod-taint
       services:
         - serviceRef:
-            name: clusters-{{ context.fleetName }}-prod
+            name: clusters-gke-demo-prod
             namespace: fleets
           criteria:
             prAutomationRef:
@@ -34,7 +34,7 @@ spec:
     - name: prod-upgrade
       services:
         - serviceRef:
-            name: clusters-{{ context.fleetName }}-prod
+            name: clusters-gke-demo-prod
             namespace: fleets
           criteria:
             prAutomationRef:
