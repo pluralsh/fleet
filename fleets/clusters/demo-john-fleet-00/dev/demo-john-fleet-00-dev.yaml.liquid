@@ -1,0 +1,37 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: InfrastructureStack
+metadata:
+  name: demo-john-fleet-00-cluster-dev
+spec:
+  name: demo-john-fleet-00-cluster-dev
+  type: TERRAFORM
+  approval: true
+  detach: false
+  manageState: true
+  actor: demo-john-fleet-00-sa@plural.sh
+  projectRef:
+    name: demo-john-fleet-00
+  configuration:
+    version: 1.8.2
+  repositoryRef:
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    name: mgmt
+    namespace: infra
+  git:
+    ref: main
+    folder: terraform/gke-cluster
+  files:
+  - mountPath: /plural
+    secretRef:
+      name: gcp-creds
+  variables:
+    kubernetes_version: "{{ configuration.kubernetesVersion }}"
+    next_kubernetes_version: "{{ configuration.nextKubernetesVersion }}"
+    cluster: demo-john-fleet-00-dev
+    tier: dev
+    fleet: demo-john-fleet-00
+  environment:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: /plural/creds.json
