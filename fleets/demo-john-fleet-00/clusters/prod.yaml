@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: demo-john-fleet-00-prod
-spec:
-  handle: demo-john-fleet-00-prod
-  tags:
-    tier: prod
-    fleet: demo-john-fleet-00
