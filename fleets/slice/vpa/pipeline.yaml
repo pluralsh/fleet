@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: slice-vpa
+spec:
+  projectRef:
+    name: slice
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: slice
+          criteria:
+            prAutomationRef:
+              name: slice-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: slice
+          criteria:
+            prAutomationRef:
+              name: slice-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL

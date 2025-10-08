@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: slice
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: slice
+spec:
+  email: slice-sa@plural.sh
+  tokenSecretRef:
+    name: slice-sa-token
+    namespace: slice
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: slice
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/slice
+spec:
+  name: slice
+  description: Resources for managing the slice fleet
+  bindings:
+    write:
+    - userEmail: slice-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: slice
+spec:
+  namespaces:
+  - slice
+  secretRef:
+    name: slice-sa-token
+    namespace: slice
