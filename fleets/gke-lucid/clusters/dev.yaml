@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: gke-lucid-dev
+spec:
+  handle: gke-lucid-dev
+  tags:
+    tier: dev
+    fleet: gke-lucid
