@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: livedemo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: livedemo
+spec:
+  email: livedemo-sa@plural.sh
+  tokenSecretRef:
+    name: livedemo-sa-token
+    namespace: livedemo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: livedemo
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/livedemo
+spec:
+  name: livedemo
+  description: Resources for managing the livedemo fleet
+  bindings:
+    write:
+    - userEmail: livedemo-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: livedemo
+spec:
+  namespaces:
+  - livedemo
+  secretRef:
+    name: livedemo-sa-token
+    namespace: livedemo

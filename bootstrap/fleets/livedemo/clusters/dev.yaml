@@ -1,0 +1,23 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: clusters-livedemo-dev
+spec:
+  
+  agentId: f560ybyjn23a4n6y
+  
+  namespace: fleets
+  git:
+    folder: fleets/clusters/livedemo/dev
+    ref: main
+  configuration:
+    kubernetesVersion: "1.31" # version
+    nextKubernetesVersion: "1.31" # version
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
