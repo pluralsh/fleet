@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: livedemo-prod
+spec:
+  handle: livedemo-prod
+  tags:
+    tier: prod
+    fleet: livedemo
