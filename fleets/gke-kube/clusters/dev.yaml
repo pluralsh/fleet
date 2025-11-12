@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gke-kube-dev
-spec:
-  handle: gke-kube-dev
-  tags:
-    tier: dev
-    fleet: gke-kube
