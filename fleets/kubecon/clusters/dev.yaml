@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: kubecon-dev
+spec:
+  handle: kubecon-dev
+  tags:
+    tier: dev
+    fleet: kubecon
