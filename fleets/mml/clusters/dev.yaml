@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: mml-dev
-spec:
-  handle: mml-dev
-  tags:
-    tier: dev
-    fleet: mml
