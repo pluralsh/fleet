@@ -13,6 +13,13 @@ spec:
     name: {{ context.fleetName }}
   configuration:
     version: 1.8.2
+    aiApproval:
+      enabled: true
+      file: stack.md
+      ignoreCancel: true
+      git:
+        ref: main
+        folder: rules
   repositoryRef:
     name: fleet
     namespace: fleets
