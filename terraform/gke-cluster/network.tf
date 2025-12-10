@@ -25,4 +25,9 @@ module "gcp-network" {
       },
     ]
   }
+
+  # Explicitly use STANDARD BGP algorithm to avoid bgp_always_compare_med issues with LEGACY.
+  network_bgp_policy = {
+    best_path_selection = "STANDARD"
+  }
 }
