@@ -1,0 +1,20 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: demo-fleet
+spec:
+  
+  agentId: awomd1z2ey0y5hzy
+  
+  namespace: demo-fleet
+  git:
+    folder: fleets/demo-fleet
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
