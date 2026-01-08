@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: fleet-demo-abcdev
+spec:
+  handle: fleet-demo-abcdev
+  tags:
+    tier: dev
+    fleet: fleet-demo-abc
