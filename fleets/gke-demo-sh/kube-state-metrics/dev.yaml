@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: kube-state-metrics-dev
+spec:
+  name: kube-state-metrics
+  namespace: kube-state-metrics
+  helm:
+    chart: kube-state-metrics
+    version: 5.19.0 # VERSION
+    url: https://prometheus-community.github.io/helm-charts
+  clusterRef:
+    kind: Cluster
+    name: gke-demo-sh-dev
+    namespace: gke-demo-sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: kube-state-metrics-dev-gke-demo-sh
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: kube-state-metrics-dev
+    namespace: gke-demo-sh
+  projectRef:
+    name: gke-demo-sh
+  tags:
+    tier: dev
