@@ -71,3 +71,9 @@ variable "managed_node_groups" {
     }
   }
 }
+
+variable "next_kubernetes_version" {
+  type        = string
+  default     = null
+  description = "Optionally provide a candidate kubernetes version for testing upgrades."
+}
