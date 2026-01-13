@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: eks-demo-ledger-dev
+spec:
+  handle: eks-demo-ledger-dev
+  tags:
+    tier: dev
+    fleet: eks-demo-ledger
