@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: eks-demo-ledger-prod
-spec:
-  handle: eks-demo-ledger-prod
-  tags:
-    tier: prod
-    fleet: eks-demo-ledger
