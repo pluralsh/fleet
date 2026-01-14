@@ -23,13 +23,13 @@ variable "node_pools" {
   default = {
     blue = {
       min_count = 0,
-      max_count = 10,
-      machine_type = "e2-standard-2"
+      max_count = 2,       # Lower max node count to promote resource exhaustion
+      machine_type = "e2-micro"   # Use a smaller machine type for increased likelihood of pool overwhelm
     }
     green = {
       min_count = 0,
-      max_count = 10,
-      machine_type = "e2-standard-2"
+      max_count = 2,       # Lower max node count
+      machine_type = "e2-micro"   # Smaller machine type
     }
   }
 }
