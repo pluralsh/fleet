@@ -1,0 +1,20 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: gke-anton
+spec:
+  
+  agentId: 2s2ys93zqlov7pwu
+  
+  namespace: gke-anton
+  git:
+    folder: fleets/gke-anton
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
