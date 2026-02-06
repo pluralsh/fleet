@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: gke-aws-demo-dev-drainer
+spec:
+  projectRef:
+    name: gke-aws-demo
+  tags:
+    tier: dev
+  template:
+    name: drainer
+    namespace: plrl-deploy-operator
+    git:
+      folder: services/drainer
+      ref: main
+    repositoryRef:
+      kind: GitRepository
+      name: fleet
+      namespace: fleets
