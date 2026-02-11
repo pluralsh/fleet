@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gke-agent
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: gke-agent
+spec:
+  email: gke-agent-sa@plural.sh
+  tokenSecretRef:
+    name: gke-agent-sa-token
+    namespace: gke-agent
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: gke-agent
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-agent
+spec:
+  name: gke-agent
+  description: Resources for managing the gke-agent fleet
+  bindings:
+    write:
+    - userEmail: gke-agent-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: gke-agent
+spec:
+  namespaces:
+  - gke-agent
+  secretRef:
+    name: gke-agent-sa-token
+    namespace: gke-agent
