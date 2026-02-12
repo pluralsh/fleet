@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: eks-agent-dev
-spec:
-  handle: eks-agent-dev
-  tags:
-    tier: dev
-    fleet: eks-agent
