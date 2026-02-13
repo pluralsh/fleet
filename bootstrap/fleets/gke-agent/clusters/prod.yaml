@@ -9,8 +9,8 @@ spec:
     folder: fleets/clusters/gke-agent/prod
     ref: main
   configuration:
-    kubernetesVersion: "1.32" # version
-    nextKubernetesVersion: "1.32" # version
+    kubernetesVersion: "1.33" # version
+    nextKubernetesVersion: "1.33" # version
   repositoryRef:
     kind: GitRepository
     name: fleet
