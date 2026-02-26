@@ -1,0 +1,18 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: gke-test-b
+spec:
+  
+  namespace: gke-test-b
+  git:
+    folder: fleets/gke-test-b
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
