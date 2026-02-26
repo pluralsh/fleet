@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gke-test-b-dev
-spec:
-  handle: gke-test-b-dev
-  tags:
-    tier: dev
-    fleet: gke-test-b
