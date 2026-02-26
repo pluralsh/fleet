@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: demo-gke-pipeline-context
+spec:
+  pipelineRef:
+    name: demo-gke-fleet-upgrade
+    namespace: fleets
+  context:
+    fleet: demo-gke
+    version: '1.33'
