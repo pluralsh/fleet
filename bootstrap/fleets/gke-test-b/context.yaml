@@ -1,0 +1,11 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: PipelineContext
+metadata:
+  name: gke-test-b-pipeline-context
+spec:
+  pipelineRef:
+    name: gke-test-b-fleet-upgrade
+    namespace: fleets
+  context:
+    fleet: gke-test-b
+    version: '1.34'
