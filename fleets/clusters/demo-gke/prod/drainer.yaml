@@ -1,0 +1,19 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: demo-gke-prod-drainer
+spec:
+  projectRef:
+    name: demo-gke
+  tags:
+    tier: prod
+  template:
+    name: drainer
+    namespace: plrl-deploy-operator
+    git:
+      folder: services/drainer
+      ref: main
+    repositoryRef:
+      kind: GitRepository
+      name: fleet
+      namespace: fleets

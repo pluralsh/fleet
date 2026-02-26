@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: demo-gke-prod
+spec:
+  handle: demo-gke-prod
+  tags:
+    tier: prod
+    fleet: demo-gke
