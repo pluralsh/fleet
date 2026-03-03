@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: matt-demo-dev
-spec:
-  handle: matt-demo-dev
-  tags:
-    tier: dev
-    fleet: matt-demo
