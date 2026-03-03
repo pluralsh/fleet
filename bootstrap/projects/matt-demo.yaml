@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: matt-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: matt-demo
+spec:
+  email: matt-demo-sa@plural.sh
+  tokenSecretRef:
+    name: matt-demo-sa-token
+    namespace: matt-demo
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: matt-demo
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/matt-demo
+spec:
+  name: matt-demo
+  description: Resources for managing the matt-demo fleet
+  bindings:
+    write:
+    - userEmail: matt-demo-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: matt-demo
+spec:
+  namespaces:
+  - matt-demo
+  secretRef:
+    name: matt-demo-sa-token
+    namespace: matt-demo

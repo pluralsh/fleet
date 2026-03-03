@@ -1,0 +1,18 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: matt-demo
+spec:
+  
+  namespace: matt-demo
+  git:
+    folder: fleets/matt-demo
+    ref: main
+  repositoryRef:
+    kind: GitRepository
+    name: fleet
+    namespace: fleets
+  clusterRef:
+    kind: Cluster
+    name: mgmt
+    namespace: infra
