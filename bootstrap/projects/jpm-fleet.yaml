@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jpm-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: jpm-fleet
+spec:
+  email: jpm-fleet-sa@plural.sh
+  tokenSecretRef:
+    name: jpm-fleet-sa-token
+    namespace: jpm-fleet
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: jpm-fleet
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/jpm-fleet
+spec:
+  name: jpm-fleet
+  description: Resources for managing the jpm-fleet fleet
+  bindings:
+    write:
+    - userEmail: jpm-fleet-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: jpm-fleet
+spec:
+  namespaces:
+  - jpm-fleet
+  secretRef:
+    name: jpm-fleet-sa-token
+    namespace: jpm-fleet
