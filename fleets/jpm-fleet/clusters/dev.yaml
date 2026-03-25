@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: jpm-fleet-dev
-spec:
-  handle: jpm-fleet-dev
-  tags:
-    tier: dev
-    fleet: jpm-fleet
