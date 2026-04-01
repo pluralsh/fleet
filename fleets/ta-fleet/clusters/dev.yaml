@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: ta-fleet-dev
-spec:
-  handle: ta-fleet-dev
-  tags:
-    tier: dev
-    fleet: ta-fleet
