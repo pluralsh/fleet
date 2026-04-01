@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: ta-fleet-kube-state-metrics
+spec:
+  projectRef:
+    name: ta-fleet
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: kube-state-metrics-dev
+            namespace: ta-fleet
+          criteria:
+            prAutomationRef:
+              name: ta-fleet-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: kube-state-metrics-prod
+            namespace: ta-fleet
+          criteria:
+            prAutomationRef:
+              name: ta-fleet-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
