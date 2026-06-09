@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gke-svb-dev
-spec:
-  handle: gke-svb-dev
-  tags:
-    tier: dev
-    fleet: gkefleet1
