@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gkefleet1
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: gkefleet1
+spec:
+  email: gkefleet1-sa@plural.sh
+  tokenSecretRef:
+    name: gkefleet1-sa-token
+    namespace: gkefleet1
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: gkefleet1
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gkefleet1
+spec:
+  name: gkefleet1
+  description: Resources for managing the gkefleet1 fleet
+  bindings:
+    write:
+    - userEmail: gkefleet1-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: gkefleet1
+spec:
+  namespaces:
+  - gkefleet1
+  secretRef:
+    name: gkefleet1-sa-token
+    namespace: gkefleet1
