@@ -1,0 +1,30 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Pipeline
+metadata:
+  name: gkefleet1-vpa
+spec:
+  projectRef:
+    name: gkefleet1
+  stages:
+    - name: dev
+      services:
+        - serviceRef:
+            name: vpa-dev
+            namespace: gkefleet1
+          criteria:
+            prAutomationRef:
+              name: gkefleet1-pra
+    - name: prod
+      services:
+        - serviceRef:
+            name: vpa-prod
+            namespace: gkefleet1
+          criteria:
+            prAutomationRef:
+              name: gkefleet1-pra
+  edges:
+    - from: dev
+      to: prod
+      gates:
+      - name: approval-gate
+        type: APPROVAL
