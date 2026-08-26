@@ -8,7 +8,7 @@ spec:
     folder: fleets/clusters/{{ context.fleetName }}/dev
     ref: main
   configuration:
-    kubernetesVersion: "1.28" # dev version
+    kubernetesVersion: "1.34" # dev version
   repositoryRef:
     kind: GitRepository
     name: fleet
@@ -28,7 +28,7 @@ spec:
     folder: fleets/clusters/{{ context.fleetName }}/prod
     ref: main
   configuration:
-    kubernetesVersion: "1.28" # prod version
+    kubernetesVersion: "1.34" # prod version
   repositoryRef:
     kind: GitRepository
     name: fleet
