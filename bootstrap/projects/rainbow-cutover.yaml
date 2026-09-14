@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rainbow-cutover
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: rainbow-cutover
+spec:
+  email: rainbow-cutover-sa@plural.sh
+  tokenSecretRef:
+    name: rainbow-cutover-sa-token
+    namespace: rainbow-cutover
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: rainbow-cutover
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/rainbow-cutover
+spec:
+  name: rainbow-cutover
+  description: Resources for managing the rainbow-cutover fleet
+  bindings:
+    write:
+    - userEmail: rainbow-cutover-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: rainbow-cutover
+spec:
+  namespaces:
+  - rainbow-cutover
+  secretRef:
+    name: rainbow-cutover-sa-token
+    namespace: rainbow-cutover

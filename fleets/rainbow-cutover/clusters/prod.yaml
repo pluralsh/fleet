@@ -1,0 +1,9 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Cluster
+metadata:
+  name: rainbow-cutover-prod
+spec:
+  handle: rainbow-cutover-prod
+  tags:
+    tier: prod
+    fleet: rainbow-cutover
