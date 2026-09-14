@@ -1,6 +1,6 @@
 resource "linode_lke_cluster" "cluster" {
   label       = var.cluster
-  k8s_version = var.kubernetes_vsn
+  k8s_version = var.kubernetes_version
   region      = var.region
 
   control_plane {
