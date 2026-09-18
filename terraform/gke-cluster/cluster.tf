@@ -44,3 +44,26 @@ module "gke" {
     # local.db_created,
   ]
 }
+
+# An empty taint list is omitted by the GKE module, which does not clear an
+# effective taint left on a pool that becomes active. Explicitly clear the
+# active pool after its transition has completed.
+resource "terraform_data" "clear_active_node_pool_taints" {
+  triggers_replace = [
+    local.active_node_group,
+    var.next_kubernetes_version,
+  ]
+
+  provisioner "local-exec" {
+    command = <<-EOT
+      gcloud beta container node-pools update ${local.active_node_group} \
+        --cluster=${var.cluster} \
+        --project=${var.project_id} \
+        --region=${var.region} \
+        --node-taints="" \
+        --quiet
+    EOT
+  }
+
+  depends_on = [module.gke]
+}
