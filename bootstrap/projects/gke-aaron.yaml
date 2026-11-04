@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gke-aaron
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: gke-aaron
+spec:
+  email: gke-aaron-sa@plural.sh
+  tokenSecretRef:
+    name: gke-aaron-sa-token
+    namespace: gke-aaron
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: gke-aaron
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-aaron
+spec:
+  name: gke-aaron
+  description: Resources for managing the gke-aaron fleet
+  bindings:
+    write:
+    - userEmail: gke-aaron-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: gke-aaron
+spec:
+  namespaces:
+  - gke-aaron
+  secretRef:
+    name: gke-aaron-sa-token
+    namespace: gke-aaron
