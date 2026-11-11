@@ -1,9 +1,0 @@
-apiVersion: deployments.plural.sh/v1alpha1
-kind: Cluster
-metadata:
-  name: gke-and-prod
-spec:
-  handle: gke-and-prod
-  tags:
-    tier: prod
-    fleet: gke-fleet-andrew
