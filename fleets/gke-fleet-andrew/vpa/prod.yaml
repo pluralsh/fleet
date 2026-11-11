@@ -1,0 +1,33 @@
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceDeployment
+metadata:
+  name: vpa-prod
+spec:
+  name: vpa
+  namespace: vpa
+  helm:
+    chart: vpa
+    version: 4.4.5 # VERSION
+    url: https://charts.fairwinds.com/stable
+    values:
+      admissionController:
+        enabled: false
+  clusterRef:
+    kind: Cluster
+    name: gke-and-prod
+    namespace: gke-fleet-andrew
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: GlobalService
+metadata:
+  name: vpa-prod-gke-fleet-andrew
+spec:
+  cascade:
+    delete: true
+  serviceRef:
+    name: vpa-prod
+    namespace: gke-fleet-andrew
+  projectRef:
+    name: gke-fleet-andrew
+  tags:
+    tier: prod
