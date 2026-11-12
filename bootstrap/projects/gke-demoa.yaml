@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gke-demoa
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: gke-demoa
+spec:
+  email: gke-demoa-sa@plural.sh
+  tokenSecretRef:
+    name: gke-demoa-sa-token
+    namespace: gke-demoa
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: Project
+metadata:
+  name: gke-demoa
+  # annotations:
+  #   config.kubernetes.io/depends-on: deployments.plural.sh/ServiceAccount/gke-demoa
+spec:
+  name: gke-demoa
+  description: Resources for managing the gke-demoa fleet
+  bindings:
+    write:
+    - userEmail: gke-demoa-sa@plural.sh
+---
+apiVersion: deployments.plural.sh/v1alpha1
+kind: NamespaceCredentials
+metadata:
+  name: gke-demoa
+spec:
+  namespaces:
+  - gke-demoa
+  secretRef:
+    name: gke-demoa-sa-token
+    namespace: gke-demoa
